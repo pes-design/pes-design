@@ -1,0 +1,58 @@
+{
+  "originalHtmlBytes": 45814054,
+  "optimizedHtmlBytes": 135143,
+  "dataUrisReplaced": 97,
+  "uniqueAssetsExtracted": 69,
+  "totalFiles": 77,
+  "largestFiles": [
+    {
+      "file": "assets/3acb5ad44a70d3ed2239.png",
+      "bytes": 5851408
+    },
+    {
+      "file": "crt-monitor-screen-transparent-4k.png",
+      "bytes": 4397357
+    },
+    {
+      "file": "assets/7b9a10103142287831da.mp4",
+      "bytes": 2320252
+    },
+    {
+      "file": "assets/d6db1f0e928777fe8558.jpg",
+      "bytes": 1594517
+    },
+    {
+      "file": "assets/24b7cf4dfa66c17d27df.jpg",
+      "bytes": 1510202
+    },
+    {
+      "file": "assets/1e8692022b13890e7892.jpg",
+      "bytes": 1316347
+    },
+    {
+      "file": "assets/27840775e0a9a3692c9f.jpg",
+      "bytes": 1035079
+    },
+    {
+      "file": "assets/fde917b34bde2f874c13.jpg",
+      "bytes": 878724
+    },
+    {
+      "file": "assets/ecd3b31c75b593d3192c.mp4",
+      "bytes": 840551
+    },
+    {
+      "file": "assets/4e0e7356d2e163973dae.jpg",
+      "bytes": 770449
+    },
+    {
+      "file": "assets/d830832d6683e01e4421.jpg",
+      "bytes": 744870
+    },
+    {
+      "file": "assets/1ff6667f45f513c4f1da.jpg",
+      "bytes": 735494
+    }
+  ],
+  "filesOver25MiB": []
+}

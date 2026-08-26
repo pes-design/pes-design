@@ -1,0 +1,2098 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Onest:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<title>PES — Portfolio</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=Onest:wght@400;500;600&amp;display=swap" rel="stylesheet"/><style>
+  :root{
+    --bg:#ffffff;
+    --ink:#111110;
+    --dim:#6b6b66;
+    --line: rgba(17,17,16,0.16);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Helvetica Neue", Arial, "PT Sans", system-ui, sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  .serif{
+    font-family:Georgia,"Times New Roman",serif;
+    font-weight:400;
+    letter-spacing:0.01em;
+  }
+  .caps{
+    text-transform:uppercase; letter-spacing:0.16em; font-size:11px; font-weight:600;
+  }
+  a{color:inherit;}
+  img{display:block; max-width:100%; height:auto;}
+
+  [data-en]{display:none;}
+  html.en [data-ru]{display:none;}
+  html.en [data-en]{display:revert;}
+
+  section, header, footer{ background:var(--bg); color:var(--ink); }
+
+  header.top{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:22px 32px;
+    background:rgba(255,255,255,0.9);
+    pointer-events:none;
+  }
+  header.top *{pointer-events:auto;}
+  .logo-img{height:75px; width:auto;}
+  nav.langtoggle{display:flex; gap:2px;}
+  nav.langtoggle button{
+    background:none; border:1px solid currentColor; color:inherit;
+    font-size:10px; letter-spacing:0.1em; padding:5px 9px; cursor:pointer;
+    font-family:inherit; opacity:0.7;
+  }
+  nav.langtoggle button.active{opacity:1;}
+
+  .hand{
+    height:2.5em; width:auto; display:inline-block; vertical-align:middle;
+    margin:0 -8px;
+  }
+
+  /* HERO */
+  .hero{
+    min-height:100vh; display:flex; flex-direction:column; justify-content:center;
+    padding:130px 32px 70px; position:relative;
+    border-bottom:1px solid var(--line);
+  }
+  .hero .eyebrow{ margin-bottom:30px; opacity:0.6; }
+
+  .hero-logo-wrap{width:min(95vw, 95vh, 1360px); margin:0 auto;}
+  .hero-logo{width:100%; mix-blend-mode:multiply; display:block;}
+
+  .hero-intro-grid{
+    width:min(100%,1360px); margin:0 auto 54px;
+    display:grid; grid-template-columns:minmax(0,1.75fr) minmax(260px,.65fr);
+    align-items:center; gap:clamp(30px,5vw,84px);
+  }
+  .hero-intro-grid .hero-logo-wrap{width:100%; margin:0;}
+  .hero-photo-card{width:100%; max-width:380px; justify-self:end; margin:0;}
+  .hero-photo-frame{background:#f6f5f2; border:1px solid var(--line); padding:10px;}
+  .hero-photo{
+    width:100%; aspect-ratio:3/4; object-fit:cover; object-position:center center;
+    filter:grayscale(100%) contrast(.96); transition:filter .3s ease;
+  }
+  .hero-photo-card:hover .hero-photo{filter:grayscale(0%) contrast(1);}
+  .hero-photo-caption{
+    display:flex; justify-content:space-between; gap:16px;
+    margin-top:10px; color:var(--dim); font-size:10px;
+  }
+
+  @media (max-width:860px){
+    .hero-intro-grid{grid-template-columns:1fr; gap:28px; margin-bottom:42px;}
+    .hero-photo-card{max-width:min(100%,420px); justify-self:start;}
+  }
+  .hero-name{
+    font-size:clamp(26px,4vw,40px); margin-top:0; margin-bottom:32px;
+    font-weight:700; font-style:italic;
+  }
+
+  .hero-about{display:flex; gap:64px; flex-wrap:wrap; padding-bottom:70px; border-bottom:1px solid var(--line);}
+  .hero-about-text{flex:2; min-width:280px; max-width:600px;}
+  .hero-about-text p{color:var(--dim); font-size:16px; line-height:1.8; margin-bottom:18px;}
+  .hero-about-text p b{color:currentColor; font-weight:600;}
+  .hero-about-skills{flex:1; min-width:220px;}
+  .hero-about-skills .lbl{margin-bottom:16px; opacity:0.6;}
+  .hero-about-skills ul{list-style:none;}
+  .hero-about-skills li{
+    padding:12px 0; border-bottom:1px solid var(--line); font-size:14px; color:var(--dim);
+    display:flex; justify-content:space-between;
+  }
+  .hero-about-skills li span:last-child{color:currentColor; font-family:Georgia,serif;}
+
+  /* CHAPTER */
+  .chapter{padding:110px 32px; border-bottom:1px solid var(--line); position:relative;}
+  .chapter-head{display:flex; align-items:center; gap:26px; margin-bottom:52px; flex-wrap:wrap;}
+  .chapter-title-wrap{flex:1; min-width:240px;}
+  .chapter-title{font-size:clamp(26px,4.2vw,46px); font-weight:400; position:relative; display:inline-block; text-transform:uppercase; letter-spacing:0.01em; font-variant-numeric:lining-nums; font-feature-settings:"lnum" 1;}
+  .chapter-title .ul{
+    position:absolute; left:0; bottom:-8px; height:1px; width:0; background:currentColor;
+    transition:width .5s cubic-bezier(.2,.8,.2,1);
+  }
+  .chapter-title:hover .ul{width:100%;}
+  .chapter-meta{color:var(--dim); font-size:13px; max-width:280px; line-height:1.6; margin-left:auto;}
+  .chapter-desc{max-width:640px; color:var(--dim); font-size:15px; margin-bottom:52px; line-height:1.75;}
+  .chapter-desc b{color:currentColor; font-weight:600;}
+
+  .product-gallery{display:flex; gap:16px; align-items:flex-start;}
+  .main-view{
+    flex:1; min-width:0; background:#f6f5f2; border:1px solid var(--line);
+    display:flex; flex-direction:column;
+  }
+  .main-img{
+    width:100%; height:min(62vh, 640px); object-fit:contain; background:#f6f5f2;
+  }
+  .main-caption{padding:14px 16px; color:var(--dim); border-top:1px solid var(--line);}
+  .thumbs{
+    display:flex; flex-direction:column; gap:8px; width:88px; flex-shrink:0;
+    max-height:min(62vh, 640px); overflow-y:auto;
+  }
+  .thumb{
+    display:block; padding:0; border:1px solid var(--line); background:var(--bg);
+    cursor:pointer; aspect-ratio:1/1; overflow:hidden; width:100%;
+  }
+  .thumb img{width:100%; height:100%; object-fit:cover; filter:grayscale(100%); opacity:0.7; transition:opacity .2s, filter .2s;}
+  .thumb:hover img{opacity:1;}
+  .thumb.active{border-color:var(--ink);}
+  .thumb.active img{opacity:1; filter:grayscale(0%);}
+
+  @media (max-width:760px){
+    .product-gallery{flex-direction:column;}
+    .thumbs{flex-direction:row; width:100%; max-height:none; overflow-x:auto; overflow-y:hidden;}
+    .thumb{width:72px; flex-shrink:0;}
+    .chapter-meta{margin-left:0;}
+  }
+
+
+  /* CONTACT */
+  footer.contact{
+    padding:100px 32px 70px; text-align:center;
+  }
+  footer.contact .serif{font-size:clamp(32px,6.4vw,64px); margin-bottom:30px; font-style:italic; text-transform:uppercase;}
+  footer.contact a.tg{
+    display:inline-block; margin-top:6px; padding:16px 34px; border:1px solid currentColor;
+    text-decoration:none; font-size:12px; letter-spacing:0.12em; text-transform:uppercase;
+    transition:all .25s;
+  }
+  footer.contact a.tg:hover{background:var(--bg); color:var(--ink);}
+  footer.contact .foot-note{margin-top:70px; color:var(--dim); font-size:11px; letter-spacing:0.05em;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important; scroll-behavior:auto !important;}
+  }
+  a:focus-visible, button:focus-visible{outline:1px solid currentColor; outline-offset:3px;}
+
+
+  /* 2026 refinement: typography, navigation, structure */
+  :root{
+    --font-body:"Onest","Helvetica Neue",Arial,sans-serif;
+    --font-display:"Golos Text","Helvetica Neue",Arial,sans-serif;
+    --font-mono:"IBM Plex Mono","SFMono-Regular",Consolas,monospace;
+    --header-h:58px;
+  }
+  body{font-family:var(--font-body);}
+  .serif,.chapter-title,.hero-name,.contact-title{font-family:var(--font-display);}
+  .mono,.caps,.chapter-meta,.main-caption,.hero-photo-caption,
+  .langtoggle button,.site-nav,.chapter-rail{font-family:var(--font-mono);}
+
+  section,footer{scroll-margin-top:calc(var(--header-h) + 14px);}
+
+  /* Compact header and full navigation */
+  header.top{
+    min-height:var(--header-h);
+    display:grid; grid-template-columns:auto 1fr auto; gap:24px;
+    padding:8px 24px;
+    border-bottom:1px solid var(--line);
+    background:rgba(255,255,255,.96);
+    backdrop-filter:blur(10px);
+    pointer-events:auto;
+  }
+  .logo-img{height:40px; width:auto;}
+  .site-nav{display:flex; justify-self:center; align-items:center; gap:clamp(14px,3vw,38px);}
+  .site-nav a{
+    display:inline-flex; gap:7px; align-items:baseline;
+    color:var(--dim); text-decoration:none; font-size:10px;
+    letter-spacing:.08em; text-transform:uppercase; white-space:nowrap;
+    padding:5px 0; position:relative;
+  }
+  .site-nav a::after{
+    content:""; position:absolute; left:0; right:0; bottom:0; height:1px;
+    background:currentColor; transform:scaleX(0); transform-origin:left;
+    transition:transform .22s ease;
+  }
+  .site-nav a:hover,.site-nav a:focus-visible{color:var(--ink);}
+  .site-nav a:hover::after,.site-nav a:focus-visible::after{transform:scaleX(1);}
+  .site-nav .nav-num{color:var(--ink);}
+  .header-tools{display:flex; align-items:center; justify-content:flex-end;}
+  nav.langtoggle{gap:4px;}
+  nav.langtoggle button{
+    border:0; padding:5px 6px; font-size:9px; opacity:.45;
+    position:relative;
+  }
+  nav.langtoggle button::after{
+    content:""; position:absolute; left:5px; right:5px; bottom:1px; height:1px;
+    background:currentColor; transform:scaleX(0); transition:transform .2s ease;
+  }
+  nav.langtoggle button.active{opacity:1;}
+  nav.langtoggle button.active::after{transform:scaleX(1);}
+
+  .chapter-rail{
+    position:fixed; z-index:45; left:11px; top:50%; transform:translateY(-50%);
+    display:flex; flex-direction:column; align-items:center; gap:13px;
+  }
+  .chapter-rail a{
+    color:var(--dim); text-decoration:none; font-size:9px; letter-spacing:.08em;
+    padding:3px 1px; position:relative;
+  }
+  .chapter-rail a::after{
+    content:""; position:absolute; left:0; right:0; bottom:0; height:1px;
+    background:currentColor; transform:scaleX(0); transition:transform .2s ease;
+  }
+  .chapter-rail a:hover,.chapter-rail a.active{color:var(--ink);}
+  .chapter-rail a:hover::after,.chapter-rail a.active::after{transform:scaleX(1);}
+
+  /* Hero: portrait is part of the composition, not a framed card */
+  .hero{
+    min-height:100vh; padding:calc(var(--header-h) + 48px) 32px 76px;
+    border-bottom:0;
+  }
+  .hero .eyebrow{margin-bottom:24px;}
+  .hero-intro-grid{
+    width:min(100%,1400px); margin:0 auto 68px;
+    grid-template-columns:minmax(0,1.38fr) minmax(340px,.72fr);
+    align-items:start; gap:clamp(34px,5vw,88px);
+  }
+  .hero-intro-grid .hero-logo-wrap{align-self:start;}
+  .hero-photo-card{width:100%; max-width:520px; justify-self:end; align-self:start;}
+  .hero-photo-wrap{background:transparent; border:0; padding:0;}
+  .hero-photo{
+    width:100%; aspect-ratio:3/4; object-fit:cover; object-position:center center;
+    filter:grayscale(100%) contrast(.96); transition:filter .3s ease;
+  }
+  .hero-photo-caption{margin-top:10px;}
+  .hero-about{border-bottom:0; padding-bottom:0;}
+  .hero-about-skills li{border-bottom:0; padding:8px 0;}
+  .hero-about-skills li span:last-child{font-family:var(--font-mono); font-size:11px;}
+  .hero-name{font-style:normal; font-weight:500; letter-spacing:-.02em;}
+
+  /* Project title and structured metadata */
+  .chapter{padding:104px 32px; border-bottom:0;}
+  .chapter-head{align-items:flex-end; margin-bottom:28px;}
+  .chapter-title{
+    font-family:var(--font-display); font-size:clamp(28px,4.1vw,52px);
+    font-weight:500; letter-spacing:-.025em; line-height:1.08;
+  }
+  .chapter-index{
+    margin-left:auto; color:var(--dim); font-size:10px; letter-spacing:.08em;
+    padding-bottom:4px; white-space:nowrap;
+  }
+  .project-overview{
+    display:grid; grid-template-columns:minmax(260px,.9fr) minmax(300px,1.1fr);
+    gap:clamp(36px,7vw,110px); align-items:start;
+    padding:22px 0 24px; margin-bottom:46px;
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  }
+  .project-facts{display:grid; gap:10px;}
+  .project-fact{display:grid; grid-template-columns:minmax(92px,.8fr) minmax(120px,1.2fr); gap:18px;}
+  .project-fact dt,.project-summary-label{
+    color:var(--dim); text-transform:uppercase; letter-spacing:.1em;
+    font-size:9px; font-weight:500;
+  }
+  .project-fact dd{font-size:11px; color:var(--ink); margin:0;}
+  .project-fact .placeholder{color:var(--dim);}
+  .project-summary{max-width:620px;}
+  .project-summary-label{margin-bottom:10px;}
+  .project-summary p{color:var(--dim); font-size:15px; line-height:1.7;}
+
+  /* Fewer frames: only metadata and active controls retain lines */
+  .main-view{border:0; background:#f6f5f2;}
+  .main-caption{border-top:0; padding:13px 0 0; background:var(--bg);}
+  .thumb{border:0; background:transparent; opacity:.72;}
+  .thumb:hover{opacity:1;}
+  .thumb.active{border:1px solid var(--ink); opacity:1;}
+
+  /* Contact screen */
+  footer.contact{
+    min-height:100vh; padding:calc(var(--header-h) + 64px) 32px 42px;
+    display:grid; grid-template-rows:auto 1fr auto; text-align:left;
+  }
+  .contact-kicker{
+    color:var(--dim); font-size:10px; letter-spacing:.1em; text-transform:uppercase;
+  }
+  .contact-main{
+    display:grid; grid-template-columns:minmax(0,1.45fr) minmax(260px,.55fr);
+    gap:clamp(40px,8vw,130px); align-items:end; align-self:center;
+  }
+  .contact-title{
+    margin:0; font-size:clamp(48px,8.5vw,122px); line-height:.88;
+    letter-spacing:-.055em; font-weight:500; text-transform:uppercase;
+  }
+  .contact-title [aria-hidden="true"]{display:inline-block; transform:translateY(-.04em);}
+  .contact-links{display:flex; flex-direction:column; align-items:stretch; gap:18px; padding-bottom:8px;}
+  .contact-links a{
+    display:grid; grid-template-columns:90px 1fr; gap:18px; align-items:baseline;
+    text-decoration:none; padding:5px 0; position:relative;
+  }
+  .contact-links a::after{
+    content:""; position:absolute; left:0; right:0; bottom:0; height:1px;
+    background:currentColor; transform:scaleX(0); transform-origin:left;
+    transition:transform .25s ease;
+  }
+  .contact-links a:hover::after,.contact-links a:focus-visible::after{transform:scaleX(1);}
+  .contact-link-label{
+    color:var(--dim); text-transform:uppercase; letter-spacing:.1em; font-size:9px;
+  }
+  .contact-link-value{font-size:clamp(16px,1.6vw,22px);}
+  footer.contact .foot-note{margin:0; align-self:end; color:var(--dim); font-size:9px; letter-spacing:.1em;}
+
+  @media (max-width:1180px){.chapter-rail{display:none;}}
+  @media (max-width:860px){
+    :root{--header-h:54px;}
+    header.top{padding:7px 16px; gap:14px;}
+    .logo-img{height:34px;}
+    .site-nav{gap:16px;}
+    .site-nav a{font-size:9px; gap:5px;}
+    .hero{padding-left:20px; padding-right:20px;}
+    .hero-intro-grid{grid-template-columns:1fr; gap:30px; margin-bottom:50px;}
+    .hero-photo-card{max-width:min(78vw,520px); justify-self:end;}
+    .chapter{padding:82px 20px;}
+    .project-overview{grid-template-columns:1fr; gap:28px;}
+    .contact-main{grid-template-columns:1fr; align-items:start; gap:48px;}
+    footer.contact{padding-left:20px; padding-right:20px;}
+    .contact-links{max-width:520px;}
+  }
+  @media (max-width:620px){
+    header.top{grid-template-columns:auto 1fr auto; gap:8px; padding-left:12px; padding-right:12px;}
+    .logo-img{height:30px;}
+    .site-nav{justify-self:end; gap:10px;}
+    .site-nav .nav-num{display:none;}
+    .site-nav a{font-size:8px; letter-spacing:.04em;}
+    nav.langtoggle button{padding-left:3px; padding-right:3px;}
+    .hero{padding-top:calc(var(--header-h) + 36px);}
+    .hero-photo-card{max-width:100%;}
+    .hero-about{gap:38px;}
+    .chapter-head{gap:12px;}
+    .chapter-index{width:100%; margin-left:0;}
+    .project-fact{grid-template-columns:92px 1fr;}
+    .contact-title{font-size:clamp(42px,14vw,78px);}
+    .contact-links a{grid-template-columns:74px 1fr; gap:12px;}
+  }
+
+
+  /* 2026 refinement: reading rhythm, project media hierarchy, display titles */
+  :root{
+    --font-project-title:"Commissioner","Arial Narrow","Helvetica Neue",Arial,sans-serif;
+  }
+
+  /* About / disciplines: keep labels visually attached to their numbers. */
+  .hero-about{
+    display:grid;
+    grid-template-columns:minmax(0,1.22fr) minmax(300px,.78fr);
+    gap:clamp(48px,8vw,128px);
+    align-items:start;
+  }
+  .hero-about-text{max-width:680px;}
+  .hero-about-skills{
+    width:100%; max-width:460px; min-width:0;
+    justify-self:end;
+  }
+  .hero-about-skills .lbl{margin-bottom:18px;}
+  .hero-about-skills ul{display:grid; gap:2px;}
+  .hero-about-skills li{
+    display:grid;
+    grid-template-columns:30px minmax(0,max-content);
+    justify-content:start;
+    align-items:baseline;
+    column-gap:12px;
+    padding:7px 0;
+  }
+  .hero-about-skills li > [data-ru],
+  .hero-about-skills li > [data-en]{grid-column:2; grid-row:1;}
+  .hero-about-skills li span:last-child{
+    grid-column:1; grid-row:1;
+    color:var(--ink);
+    font-size:10px;
+    letter-spacing:.06em;
+  }
+
+  /* Project headings: restrained display face, type and side graphics share one scale. */
+  .chapter-head{align-items:center; margin-bottom:34px;}
+  .chapter-title-wrap{min-width:0;}
+  .chapter-title{
+    font-family:var(--font-project-title);
+    font-size:clamp(40px,4.6vw,68px);
+    font-weight:500;
+    line-height:.96;
+    letter-spacing:-.045em;
+    display:inline-flex;
+    align-items:center;
+    gap:clamp(3px,.55vw,10px);
+    max-width:100%;
+  }
+  .chapter-title .hand{
+    height:1.06em;
+    width:auto;
+    flex:0 0 auto;
+    margin:0 -.08em;
+  }
+  .chapter-title .ul{bottom:-12px;}
+
+  /* Project media: metadata first, hero image second, image index third. */
+  .product-gallery{
+    display:grid;
+    grid-template-columns:minmax(0,1fr);
+    align-items:stretch;
+    gap:0;
+  }
+  .gallery-meta{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:24px;
+    margin-bottom:18px;
+    color:var(--dim);
+    font-size:9px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+  }
+  .gallery-counter{color:var(--ink); white-space:nowrap;}
+  .main-view{
+    width:100%;
+    display:grid;
+    grid-template-rows:auto auto;
+    background:transparent;
+  }
+  .main-img{
+    width:100%;
+    height:min(76vh,820px);
+    min-height:520px;
+    object-fit:contain;
+    padding:clamp(18px,3vw,46px);
+    background:#f6f5f2;
+  }
+  .main-caption{
+    min-height:34px;
+    padding:13px 0 0;
+    font-size:10px;
+    letter-spacing:.08em;
+  }
+  .thumbs{
+    width:100%;
+    max-height:none;
+    margin-top:22px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(72px,96px));
+    justify-content:start;
+    gap:10px;
+    overflow:visible;
+  }
+  .thumb{
+    width:100%;
+    aspect-ratio:4/3;
+    flex:0 0 auto;
+  }
+  .thumb img{object-fit:cover;}
+
+  @media (max-width:860px){
+    .hero-about{
+      grid-template-columns:minmax(0,1fr) minmax(250px,.72fr);
+      gap:48px;
+    }
+    .chapter-title{font-size:clamp(38px,5.8vw,56px);}
+    .main-img{height:min(68vh,700px); min-height:440px;}
+  }
+  @media (max-width:700px){
+    .hero-about{grid-template-columns:1fr; gap:34px;}
+    .hero-about-skills{justify-self:start; max-width:100%;}
+    .chapter-head{align-items:flex-start;}
+    .chapter-title{
+      font-size:clamp(34px,9.6vw,48px);
+      gap:4px;
+    }
+    .chapter-title .hand{height:1em;}
+    .main-img{height:min(58vh,560px); min-height:340px; padding:12px;}
+    .thumbs{
+      display:flex;
+      width:100%;
+      overflow-x:auto;
+      overflow-y:hidden;
+      padding-bottom:4px;
+      gap:8px;
+    }
+    .thumb{width:76px; flex:0 0 76px;}
+  }
+
+
+  /* Product cards: two separate drag-only horizontal panels */
+  .product-panels{display:grid; gap:48px; margin-top:8px;}
+  .product-panel{min-width:0;}
+  .product-panel-head{
+    display:flex; align-items:baseline; justify-content:space-between; gap:20px;
+    margin-bottom:14px; border-top:1px solid var(--line); padding-top:13px;
+  }
+  .product-panel-title{
+    color:var(--ink); font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+  }
+  .product-panel-hint{color:var(--dim); font-size:9px; letter-spacing:.08em; text-transform:uppercase; white-space:nowrap;}
+  .product-panel-viewport{
+    width:100%; overflow:hidden; cursor:grab; user-select:none; touch-action:pan-y;
+    background:#f6f5f2; padding:14px 0;
+  }
+  .product-panel-viewport.is-dragging{cursor:grabbing;}
+  .product-panel-track{
+    display:flex; width:max-content; gap:38px; will-change:transform;
+    transform:translate3d(0,0,0);
+  }
+  .product-media-card{
+    flex:0 0 clamp(300px, 34vw, 350px);
+    width:clamp(300px, 34vw, 350px);
+    margin:0; background:transparent;
+  }
+  .product-media-card img{
+    display:block; width:100%; height:auto; aspect-ratio:3/4;
+    object-fit:contain; background:#f6f5f2; pointer-events:none;
+  }
+  .product-media-caption{
+    margin-top:10px; padding:0 2px 2px; color:var(--dim); font-size:9px; letter-spacing:.06em;
+    text-transform:uppercase;
+  }
+  @media (max-width:700px){
+    .product-panels{gap:34px;}
+    .product-panel-head{align-items:flex-start;}
+    .product-panel-title{font-size:10px; line-height:1.35; max-width:72%;}
+    .product-panel-hint{font-size:8px;}
+    .product-panel-viewport{padding:10px 0;}
+    .product-panel-track{gap:38px;}
+    .product-media-card{flex-basis:min(82vw,350px); width:min(82vw,350px);}
+    .product-media-card img{height:auto; min-height:0; max-height:none;}
+  }
+
+
+  /* 2026 interaction update: custom cursor, animated posters and split print case. */
+  html, body, body *, body *::before, body *::after {
+    cursor:url("assets/a4dac00b7ee2d94d7f1f.png") 28 7, auto !important;
+  }
+
+  /* Print project: two-column case study with hover crossfades. */
+  .print-showcase{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    gap:0;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    margin-top:8px;
+    min-height:clamp(620px,72vw,940px);
+  }
+  .print-mockup-column,.print-process-column{min-width:0; padding-top:14px;}
+  .print-mockup-column{padding-right:clamp(18px,3vw,46px); border-right:1px solid var(--line);}
+  .print-process-column{padding-left:clamp(18px,3vw,46px); display:grid; grid-template-rows:auto minmax(270px,.9fr) auto; gap:14px;}
+  .print-block-label{
+    min-height:28px; color:var(--dim); font-size:9px; letter-spacing:.09em;
+    text-transform:uppercase; display:flex; align-items:flex-start;
+  }
+  .print-mockup-stage,.print-spreads-stage{
+    appearance:none; border:0; padding:0; width:100%; position:relative; overflow:hidden;
+    background:#f2f1ee; display:block; text-align:left;
+  }
+  .print-mockup-stage{height:calc(100% - 42px); min-height:560px;}
+  .print-mockup-image{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:contain;
+    transition:opacity .85s cubic-bezier(.2,.75,.2,1), transform 1.1s cubic-bezier(.2,.75,.2,1);
+    will-change:opacity,transform;
+  }
+  .print-mockup-image--primary{opacity:1; transform:scale(1);}
+  .print-mockup-image--secondary{opacity:0; transform:scale(1.025);}
+  .print-mockup-stage:hover .print-mockup-image--primary,
+  .print-mockup-stage.is-alt .print-mockup-image--primary{opacity:0; transform:scale(.985);}
+  .print-mockup-stage:hover .print-mockup-image--secondary,
+  .print-mockup-stage.is-alt .print-mockup-image--secondary{opacity:1; transform:scale(1);}
+  .print-hover-note{
+    position:absolute; left:12px; bottom:10px; z-index:4; padding:5px 7px;
+    background:rgba(255,255,255,.86); backdrop-filter:blur(6px); color:var(--ink);
+    font-size:8px; letter-spacing:.08em; text-transform:uppercase;
+  }
+  .print-hover-note--right{left:auto; right:12px;}
+  .print-spreads-stage{min-height:clamp(300px,31vw,430px);}
+  .print-spreads-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:10px; width:100%; height:100%;
+    padding:10px; transition:opacity .7s ease, transform .85s cubic-bezier(.2,.75,.2,1);
+  }
+  .print-spread-thumb{display:block; overflow:hidden; background:#e9e8e4;}
+  .print-spread-thumb img{width:100%; height:100%; min-height:280px; object-fit:cover; pointer-events:none;}
+  .print-sketch-overlay{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:contain; padding:10px;
+    background:#fff; opacity:0; transform:scale(1.02);
+    transition:opacity .72s ease, transform .9s cubic-bezier(.2,.75,.2,1); pointer-events:none;
+  }
+  .print-spreads-stage:hover .print-spreads-grid,
+  .print-spreads-stage.is-process .print-spreads-grid{opacity:0; transform:scale(.985);}
+  .print-spreads-stage:hover .print-sketch-overlay,
+  .print-spreads-stage.is-process .print-sketch-overlay{opacity:1; transform:scale(1);}
+  .print-process-card{margin:0; border-top:1px solid var(--line); padding-top:14px;}
+  .print-process-card img{
+    width:100%; max-height:clamp(220px,27vw,380px); object-fit:contain; background:#fff;
+  }
+  .print-process-card figcaption{
+    margin-top:10px; color:var(--dim); font-size:9px; line-height:1.55;
+    letter-spacing:.07em; text-transform:uppercase;
+  }
+
+  /* Posters: seamless right-to-left cover-flow carousel. */
+  .poster-carousel{margin-top:6px; overflow:hidden;}
+  .poster-carousel-meta{
+    display:flex; justify-content:space-between; align-items:center; gap:24px;
+    color:var(--dim); font-size:9px; letter-spacing:.09em; text-transform:uppercase;
+    border-top:1px solid var(--line); padding-top:13px; margin-bottom:14px;
+  }
+  .poster-direction{font-size:18px; line-height:1; color:var(--ink);}
+  .poster-viewport{
+    width:100%; overflow:hidden; user-select:none; touch-action:pan-y;
+    padding:clamp(22px,4vw,54px) 0; background:#f6f5f2;
+  }
+  .poster-viewport.is-dragging{cursor:url("assets/a4dac00b7ee2d94d7f1f.png") 28 7, grabbing !important;}
+  .poster-track{
+    display:flex; align-items:center; width:max-content;
+    gap:clamp(18px,2.4vw,38px); will-change:transform; transform:translate3d(0,0,0);
+  }
+  .poster-item{
+    width:clamp(250px,32vw,470px); flex:0 0 clamp(250px,32vw,470px); margin:0;
+  }
+  .poster-card-inner{
+    transform-origin:center center; will-change:transform,opacity;
+  }
+  .poster-item img{
+    width:100%; height:clamp(390px,56vw,700px); object-fit:contain;
+    background:#f6f5f2; pointer-events:none; -webkit-user-drag:none;
+  }
+  .poster-caption{
+    display:grid; grid-template-columns:32px minmax(0,1fr); gap:10px;
+    margin-top:10px; color:var(--dim); font-size:9px; line-height:1.45;
+    letter-spacing:.07em; text-transform:uppercase;
+  }
+  .poster-number{color:var(--ink);}
+
+  @media (max-width:860px){
+    .print-showcase{grid-template-columns:1fr; min-height:0;}
+    .print-mockup-column{padding-right:0; padding-bottom:28px; border-right:0; border-bottom:1px solid var(--line);}
+    .print-process-column{padding-left:0; padding-top:28px; grid-template-rows:auto auto auto;}
+    .print-mockup-stage{height:min(78vh,720px); min-height:440px;}
+    .print-spreads-stage{min-height:420px;}
+    .poster-item{width:clamp(230px,58vw,390px); flex-basis:clamp(230px,58vw,390px);}
+    .poster-item img{height:clamp(350px,78vw,580px);}
+  }
+  @media (max-width:560px){
+    .print-mockup-stage{height:64vh; min-height:360px;}
+    .print-spreads-stage{min-height:340px;}
+    .print-spreads-grid{gap:6px; padding:6px;}
+    .print-spread-thumb img{min-height:320px;}
+    .print-sketch-overlay{padding:6px;}
+    .poster-carousel-meta{align-items:flex-start;}
+    .poster-item{width:72vw; flex-basis:72vw;}
+    .poster-item img{height:96vw; max-height:560px;}
+  }
+
+  /* Keep the left print mockup at its native 4:3 proportion so it fills the column cleanly. */
+  .print-mockup-stage{aspect-ratio:4/3; height:auto; min-height:0;}
+  @media (max-width:860px){.print-mockup-stage{height:auto; min-height:0;}}
+  @media (max-width:560px){.print-mockup-stage{height:auto; min-height:0;}}
+</style>
+<style id="final-revision-styles">
+/* Final revision: 06 Aug 2026 */
+html, body, body *, body *::before, body *::after {
+  cursor:url("assets/7e2db78b06b887924e9d.png") 12 2, auto !important;
+}
+.poster-viewport.is-dragging,
+.product-panel-viewport.is-dragging {
+  cursor:url("assets/7e2db78b06b887924e9d.png") 12 2, grabbing !important;
+}
+
+/* Print project: tighter mockup crop and fully visible, smaller spreads. */
+.print-mockup-stage { aspect-ratio:4/3; height:auto; min-height:0; background:#ecebea; }
+.print-mockup-image {
+  object-fit:cover;
+  object-position:50% 50%;
+  transform:scale(1.30);
+}
+.print-mockup-image--primary { opacity:1; transform:scale(1.30); }
+.print-mockup-image--secondary { opacity:0; transform:scale(1.335); }
+.print-mockup-stage:hover .print-mockup-image--primary,
+.print-mockup-stage.is-alt .print-mockup-image--primary { opacity:0; transform:scale(1.27); }
+.print-mockup-stage:hover .print-mockup-image--secondary,
+.print-mockup-stage.is-alt .print-mockup-image--secondary { opacity:1; transform:scale(1.30); }
+.print-process-column { grid-template-rows:auto auto auto; align-content:start; }
+.print-spreads-stage {
+  width:66.666%;
+  min-height:0;
+  aspect-ratio:8/3;
+  justify-self:start;
+  background:#fff;
+}
+.print-spreads-grid { height:100%; aspect-ratio:8/3; padding:0; gap:8px; }
+.print-spread-thumb { display:flex; align-items:center; justify-content:center; background:#fff; }
+.print-spread-thumb img { width:100%; height:100%; min-height:0; object-fit:contain; background:#fff; }
+.print-sketch-overlay { padding:0; object-fit:contain; background:#fff; }
+@media (max-width:860px) {
+  .print-spreads-stage { width:100%; aspect-ratio:8/3; }
+  .print-spreads-grid { aspect-ratio:8/3; }
+}
+
+/* Product cards: decode first, then reveal both panels with the same soft transition. */
+.product-panel-viewport {
+  opacity:.001;
+  transform:translate3d(0,10px,0);
+  transition:opacity .7s ease, transform .8s cubic-bezier(.2,.75,.2,1);
+  contain:layout paint;
+}
+.product-panel.is-media-ready .product-panel-viewport { opacity:1; transform:translate3d(0,0,0); }
+.product-panel-track,
+.product-media-card,
+.product-media-card img { backface-visibility:hidden; transform-style:preserve-3d; }
+.product-media-card img {
+  opacity:0;
+  transition:opacity .45s ease;
+  image-rendering:auto;
+}
+.product-media-card img.is-decoded { opacity:1; }
+
+/* Illustration case study. */
+.illustration-overview { margin-bottom:clamp(58px,7vw,104px); }
+.illustration-case { display:grid; gap:clamp(86px,10vw,150px); }
+.illustration-section { min-width:0; }
+.illustration-section-head {
+  display:grid;
+  grid-template-columns:34px minmax(0,1fr);
+  gap:14px;
+  align-items:start;
+  width:100%;
+  max-width:1120px;
+  margin:0 0 clamp(24px,3vw,42px) 0;
+  padding-top:14px;
+  border-top:1px solid var(--line);
+}
+.illustration-section-index { color:var(--dim); font-size:9px; letter-spacing:.1em; padding-top:5px; }
+.illustration-section-head h3 {
+  margin:0 0 8px;
+  font-family:var(--font-display);
+  font-size:clamp(22px,2.5vw,36px);
+  font-weight:500;
+  line-height:1.1;
+  letter-spacing:-.025em;
+}
+.illustration-section-head p {
+  max-width:1040px;
+  color:var(--dim);
+  font-size:clamp(12px,1.05vw,14px);
+  line-height:1.55;
+}
+.comic-media { margin:0; min-width:0; position:relative; background:#f6f5f2; }
+.comic-media img { display:block; width:100%; height:auto; object-fit:contain; background:#fff; }
+.comic-media--hover { z-index:1; }
+.comic-media--hover img {
+  transition:transform .65s cubic-bezier(.2,.78,.2,1), box-shadow .65s ease;
+  transform-origin:center center;
+  will-change:transform;
+}
+.comic-media--hover:hover { z-index:20; }
+.comic-media--hover:hover img {
+  transform:scale(1.5);
+  box-shadow:0 18px 48px rgba(17,17,16,.16);
+}
+.comic-concept-grid {
+  display:grid;
+  grid-template-columns:minmax(92px,.68fr) minmax(92px,.68fr) minmax(320px,1.9fr) minmax(92px,.68fr) minmax(92px,.68fr);
+  gap:clamp(8px,1.25vw,20px);
+  align-items:center;
+  overflow:visible;
+}
+.comic-media--center { align-self:center; }
+.comic-storyboard-grid {
+  display:grid;
+  grid-template-columns:2.5fr 2.5fr 1fr 1fr;
+  gap:clamp(10px,1.5vw,24px);
+  align-items:start;
+  overflow:visible;
+}
+.comic-storyboard-grid .comic-media img { width:100%; height:auto; object-fit:contain; }
+.comic-storyboard-small { align-self:start; }
+.comic-final-grid {
+  display:grid;
+  grid-template-columns:minmax(0,1.55fr) minmax(260px,.72fr);
+  gap:clamp(18px,3vw,48px);
+  align-items:start;
+}
+.comic-final-side { display:grid; gap:clamp(14px,2vw,28px); min-width:0; }
+.comic-final-cover img { width:100%; height:auto; object-fit:contain; }
+.comic-final-extra { aspect-ratio:4/3; overflow:hidden; }
+.comic-final-extra img { width:100%; height:100%; object-fit:cover; object-position:50% 32%; }
+
+@media (max-width:1000px) {
+  .comic-concept-grid { grid-template-columns:repeat(4,minmax(0,1fr)); align-items:start; }
+  .comic-media--center { grid-column:1/-1; grid-row:1; width:min(100%,760px); justify-self:center; }
+  .comic-concept-grid .comic-media--side:nth-of-type(1) { grid-column:1; }
+  .comic-concept-grid .comic-media--side:nth-of-type(2) { grid-column:2; }
+  .comic-concept-grid .comic-media--side:nth-of-type(4) { grid-column:3; }
+  .comic-concept-grid .comic-media--side:nth-of-type(5) { grid-column:4; }
+  .comic-storyboard-grid { grid-template-columns:1fr 1fr; }
+  .comic-storyboard-small { width:62%; justify-self:center; }
+}
+@media (max-width:720px) {
+  .illustration-case { gap:82px; }
+  .illustration-section-head { grid-template-columns:26px minmax(0,1fr); gap:10px; }
+  .comic-concept-grid { grid-template-columns:1fr 1fr; gap:12px; }
+  .comic-media--center { grid-column:1/-1; }
+  .comic-concept-grid .comic-media--side:nth-of-type(1),
+  .comic-concept-grid .comic-media--side:nth-of-type(4) { grid-column:1; }
+  .comic-concept-grid .comic-media--side:nth-of-type(2),
+  .comic-concept-grid .comic-media--side:nth-of-type(5) { grid-column:2; }
+  .comic-media--hover:hover img { transform:scale(1.16); }
+  .comic-storyboard-grid { grid-template-columns:1fr 1fr; gap:12px; }
+  .comic-storyboard-large { grid-column:span 1; }
+  .comic-storyboard-small { width:68%; justify-self:center; }
+  .comic-final-grid { grid-template-columns:1fr; }
+  .comic-final-side { grid-template-columns:1fr 1fr; align-items:start; }
+}
+@media (max-width:480px) {
+  .comic-storyboard-grid { grid-template-columns:1fr; }
+  .comic-storyboard-small { width:70%; }
+  .comic-final-side { grid-template-columns:1fr; }
+}
+</style><style id="recomposition-revision-styles">
+/* Recomposition revision: print, illustration, branding and project order. */
+
+/* Branding & packaging — interactive editorial system. */
+.branding-showcase{
+  display:grid;
+  grid-template-columns:minmax(0,1.55fr) minmax(300px,.62fr);
+  gap:clamp(24px,4vw,64px);
+  align-items:start;
+}
+.branding-stage{min-width:0;}
+.branding-stage-meta{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  margin-bottom:14px;
+  color:var(--dim);
+  font-size:9px;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+}
+.branding-stage-frame{
+  position:relative;
+  aspect-ratio:4/3;
+  overflow:hidden;
+  background:#f2f1ed;
+}
+.branding-stage-image{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  padding:clamp(22px,4vw,62px);
+  opacity:0;
+  transform:scale(.985);
+  transition:opacity .55s ease, transform .7s cubic-bezier(.2,.78,.2,1);
+  will-change:opacity,transform;
+}
+.branding-stage-image.is-active{opacity:1; transform:scale(1);}
+.branding-index{
+  display:grid;
+  align-content:start;
+  border-bottom:1px solid var(--line);
+}
+.branding-tile{
+  appearance:none;
+  width:100%;
+  display:grid;
+  grid-template-columns:28px minmax(90px,132px) minmax(0,1fr);
+  gap:clamp(10px,1.5vw,20px);
+  align-items:center;
+  padding:12px 0;
+  border:0;
+  border-top:1px solid var(--line);
+  background:transparent;
+  color:inherit;
+  text-align:left;
+}
+.branding-tile-number{
+  align-self:start;
+  padding-top:3px;
+  color:var(--dim);
+  font-size:9px;
+  letter-spacing:.08em;
+}
+.branding-tile-thumb{
+  display:block;
+  aspect-ratio:4/3;
+  overflow:hidden;
+  background:#f2f1ed;
+}
+.branding-tile-thumb img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  padding:6px;
+  opacity:.68;
+  transform:scale(.96);
+  transition:opacity .3s ease, transform .45s cubic-bezier(.2,.78,.2,1);
+}
+.branding-tile-caption{
+  color:var(--dim);
+  font-size:11px;
+  line-height:1.4;
+  transition:color .25s ease;
+}
+.branding-tile:hover .branding-tile-thumb img,
+.branding-tile.is-active .branding-tile-thumb img{opacity:1; transform:scale(1);}
+.branding-tile:hover .branding-tile-caption,
+.branding-tile.is-active .branding-tile-caption{color:var(--ink);}
+
+/* Print — larger readable spreads, larger process art and no artificial empty height. */
+#ch3{padding-bottom:clamp(58px,6vw,88px);}
+#ch3 .print-showcase{
+  grid-template-columns:minmax(0,1.28fr) minmax(420px,.92fr);
+  min-height:0;
+  height:auto;
+  align-items:start;
+}
+#ch3 .print-mockup-column{
+  display:grid;
+  align-content:start;
+  padding-right:clamp(20px,3.4vw,54px);
+}
+#ch3 .print-mockup-stage{
+  width:100%;
+  max-width:920px;
+  justify-self:center;
+  aspect-ratio:4/3;
+  min-height:0;
+}
+#ch3 .print-mockup-image{
+  object-fit:cover;
+  object-position:50% 50%;
+}
+#ch3 .print-mockup-image--primary{transform:scale(1.18);}
+#ch3 .print-mockup-image--secondary{transform:scale(1.205);}
+#ch3 .print-mockup-stage:hover .print-mockup-image--primary,
+#ch3 .print-mockup-stage.is-alt .print-mockup-image--primary{transform:scale(1.15);}
+#ch3 .print-mockup-stage:hover .print-mockup-image--secondary,
+#ch3 .print-mockup-stage.is-alt .print-mockup-image--secondary{transform:scale(1.18);}
+#ch3 .print-process-column{
+  padding-left:clamp(20px,3.4vw,54px);
+  grid-template-rows:auto auto auto;
+  align-content:start;
+  gap:18px;
+}
+#ch3 .print-spreads-stage{
+  width:100%;
+  min-height:0;
+  aspect-ratio:1.44/1;
+  justify-self:stretch;
+  background:#fff;
+}
+#ch3 .print-spreads-grid{
+  width:100%;
+  height:100%;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+  padding:0;
+  aspect-ratio:auto;
+}
+#ch3 .print-spread-thumb{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-width:0;
+  background:#fff;
+}
+#ch3 .print-spread-thumb img{
+  width:100%;
+  height:100%;
+  min-height:0;
+  object-fit:contain;
+  background:#fff;
+}
+#ch3 .print-sketch-overlay{
+  inset:0;
+  width:100%;
+  height:100%;
+  padding:8px;
+  object-fit:contain;
+  object-position:center;
+  background:#fff;
+}
+#ch3 .print-process-card{
+  width:100%;
+  margin:4px 0 0;
+}
+#ch3 .print-process-card img{
+  width:100%;
+  height:auto;
+  max-height:none;
+  object-fit:contain;
+}
+#ch3 + .chapter{padding-top:clamp(72px,8vw,104px);}
+
+/* Illustration — balanced three-column concept composition. */
+.comic-concept-grid{
+  display:grid;
+  grid-template-columns:minmax(170px,.62fr) minmax(480px,2fr) minmax(170px,.62fr);
+  gap:clamp(10px,1.35vw,22px);
+  align-items:stretch;
+  height:clamp(430px,42vw,640px);
+  overflow:visible;
+}
+.comic-concept-side{
+  min-width:0;
+  min-height:0;
+  display:grid;
+  grid-template-rows:repeat(2,minmax(0,1fr));
+  gap:clamp(10px,1.35vw,22px);
+}
+.comic-concept-side .comic-media,
+.comic-concept-grid > .comic-media--center{
+  min-height:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#fff;
+}
+.comic-concept-side .comic-media img,
+.comic-concept-grid > .comic-media--center img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+.comic-concept-grid > .comic-media--center{
+  align-self:stretch;
+}
+
+/* Storyboard section — two stacked page columns plus the paper storyboard. */
+.comic-storyboard-grid{
+  display:grid;
+  grid-template-columns:minmax(190px,.85fr) minmax(130px,.55fr) minmax(320px,1.35fr);
+  gap:clamp(12px,1.7vw,28px);
+  align-items:stretch;
+  overflow:visible;
+}
+.comic-storyboard-stack{
+  min-width:0;
+  min-height:0;
+  display:grid;
+  grid-template-rows:repeat(2,minmax(0,1fr));
+  gap:clamp(12px,1.7vw,28px);
+}
+.comic-storyboard-stack .comic-media,
+.comic-storyboard-process{
+  min-height:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#fff;
+}
+.comic-storyboard-stack .comic-media img,
+.comic-storyboard-process img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+.comic-storyboard-small{width:100%; justify-self:stretch; align-self:stretch;}
+
+/* Finished comic — mockup plus two full-height covers. */
+.comic-final-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.45fr) minmax(180px,.56fr) minmax(180px,.56fr);
+  gap:clamp(16px,2.2vw,34px);
+  align-items:center;
+  overflow:visible;
+}
+.comic-final-cover,
+.comic-final-extra{
+  aspect-ratio:auto;
+  overflow:visible;
+  background:#fff;
+}
+.comic-final-cover img,
+.comic-final-extra img{
+  width:100%;
+  height:auto;
+  object-fit:contain;
+  object-position:center;
+}
+.comic-final-grid .comic-media--hover:hover img{transform:scale(1.16);}
+
+/* Responsive recomposition. */
+@media (max-width:1050px){
+  .branding-showcase{grid-template-columns:minmax(0,1.25fr) minmax(270px,.75fr);}
+  #ch3 .print-showcase{grid-template-columns:1fr;}
+  #ch3 .print-mockup-column{
+    padding-right:0;
+    padding-bottom:30px;
+    border-right:0;
+    border-bottom:1px solid var(--line);
+  }
+  #ch3 .print-process-column{
+    padding-left:0;
+    padding-top:30px;
+  }
+  #ch3 .print-spreads-stage{width:min(100%,760px); justify-self:start;}
+  .comic-concept-grid{
+    grid-template-columns:minmax(145px,.62fr) minmax(390px,1.8fr) minmax(145px,.62fr);
+    height:clamp(360px,43vw,500px);
+  }
+  .comic-storyboard-grid{
+    grid-template-columns:minmax(160px,.8fr) minmax(110px,.52fr) minmax(270px,1.25fr);
+  }
+}
+@media (max-width:780px){
+  .branding-showcase{grid-template-columns:1fr;}
+  .branding-index{grid-template-columns:1fr 1fr; gap:0 18px; border-bottom:0;}
+  .branding-tile{grid-template-columns:24px minmax(72px,108px) minmax(0,1fr);}
+  .comic-concept-grid{
+    height:auto;
+    grid-template-columns:1fr 1fr;
+    align-items:start;
+  }
+  .comic-concept-grid > .comic-media--center{
+    grid-column:1/-1;
+    grid-row:1;
+    width:100%;
+    aspect-ratio:2048/1447;
+  }
+  .comic-concept-side{
+    height:auto;
+    grid-template-rows:auto auto;
+  }
+  .comic-concept-side .comic-media{aspect-ratio:893/1300;}
+  .comic-concept-side--left{grid-column:1; grid-row:2;}
+  .comic-concept-side--right{grid-column:2; grid-row:2;}
+  .comic-storyboard-grid{
+    grid-template-columns:1fr 1fr;
+  }
+  .comic-storyboard-stack--left{grid-column:1;}
+  .comic-storyboard-stack--middle{grid-column:2;}
+  .comic-storyboard-process{
+    grid-column:1/-1;
+    width:min(100%,620px);
+    justify-self:center;
+  }
+  .comic-storyboard-process img{height:auto;}
+  .comic-final-grid{
+    grid-template-columns:1fr 1fr;
+    align-items:start;
+  }
+  .comic-final-mockup{grid-column:1/-1;}
+}
+@media (max-width:560px){
+  .branding-index{grid-template-columns:1fr;}
+  .branding-tile{grid-template-columns:24px 94px minmax(0,1fr);}
+  #ch3 .print-spreads-stage{aspect-ratio:auto;}
+  #ch3 .print-spreads-grid{
+    height:auto;
+    grid-template-columns:1fr;
+  }
+  #ch3 .print-spread-thumb img{height:auto;}
+  #ch3 .print-sketch-overlay{position:relative; height:auto;}
+  .comic-concept-grid{grid-template-columns:1fr;}
+  .comic-concept-grid > .comic-media--center,
+  .comic-concept-side--left,
+  .comic-concept-side--right{grid-column:1;}
+  .comic-concept-side--left{grid-row:2;}
+  .comic-concept-side--right{grid-row:3;}
+  .comic-concept-side .comic-media{aspect-ratio:auto;}
+  .comic-concept-side .comic-media img{height:auto;}
+  .comic-storyboard-grid{grid-template-columns:1fr;}
+  .comic-storyboard-stack--left,
+  .comic-storyboard-stack--middle,
+  .comic-storyboard-process{grid-column:1;}
+  .comic-storyboard-stack .comic-media img{height:auto;}
+  .comic-final-grid{grid-template-columns:1fr;}
+  .comic-final-mockup{grid-column:1;}
+}
+</style><style id="storyboard-layout-correction">
+/* Storyboard layout correction: small pair left, large pair centre, paper storyboard right. */
+.illustration-section--storyboards .comic-storyboard-grid{
+  display:grid;
+  grid-template-columns:minmax(120px,.56fr) minmax(300px,1.22fr) minmax(220px,.92fr);
+  gap:clamp(12px,1.55vw,26px);
+  align-items:center;
+  overflow:visible;
+}
+.illustration-section--storyboards .comic-storyboard-stack{
+  min-width:0;
+  display:grid;
+  grid-template-rows:auto auto;
+  align-content:center;
+  gap:clamp(12px,1.55vw,26px);
+}
+.illustration-section--storyboards .comic-storyboard-stack--left{
+  grid-column:1;
+}
+.illustration-section--storyboards .comic-storyboard-stack--middle{
+  grid-column:2;
+}
+.illustration-section--storyboards .comic-storyboard-stack .comic-media{
+  width:100%;
+  min-height:0;
+  display:block;
+  background:#fff;
+}
+.illustration-section--storyboards .comic-storyboard-stack .comic-media img{
+  display:block;
+  width:100%;
+  height:auto;
+  object-fit:contain;
+  background:#fff;
+}
+.illustration-section--storyboards .comic-storyboard-process{
+  grid-column:3;
+  width:min(100%,430px);
+  height:auto;
+  min-height:0;
+  justify-self:center;
+  align-self:center;
+  display:block;
+  background:#fff;
+}
+.illustration-section--storyboards .comic-storyboard-process img{
+  display:block;
+  width:100%;
+  height:auto;
+  object-fit:contain;
+  background:#fff;
+}
+
+@media (max-width:980px){
+  .illustration-section--storyboards .comic-storyboard-grid{
+    grid-template-columns:minmax(95px,.52fr) minmax(230px,1.08fr) minmax(175px,.82fr);
+    gap:clamp(10px,1.35vw,18px);
+  }
+  .illustration-section--storyboards .comic-storyboard-stack{
+    gap:clamp(10px,1.35vw,18px);
+  }
+}
+
+/* Keep the requested three-column composition on tablets instead of moving
+   the paper storyboard underneath and making it disproportionately large. */
+@media (max-width:780px) and (min-width:561px){
+  .illustration-section--storyboards .comic-storyboard-grid{
+    grid-template-columns:minmax(72px,.48fr) minmax(170px,1fr) minmax(125px,.72fr);
+    gap:10px;
+    align-items:center;
+  }
+  .illustration-section--storyboards .comic-storyboard-stack--left{grid-column:1;}
+  .illustration-section--storyboards .comic-storyboard-stack--middle{grid-column:2;}
+  .illustration-section--storyboards .comic-storyboard-process{
+    grid-column:3;
+    width:100%;
+    max-width:260px;
+    justify-self:center;
+  }
+  .illustration-section--storyboards .comic-storyboard-stack{gap:10px;}
+}
+
+@media (max-width:560px){
+  .illustration-section--storyboards .comic-storyboard-grid{
+    grid-template-columns:minmax(82px,.52fr) minmax(180px,1fr);
+    gap:12px;
+    align-items:start;
+  }
+  .illustration-section--storyboards .comic-storyboard-stack--left{
+    grid-column:1;
+    grid-row:1;
+  }
+  .illustration-section--storyboards .comic-storyboard-stack--middle{
+    grid-column:2;
+    grid-row:1;
+  }
+  .illustration-section--storyboards .comic-storyboard-process{
+    grid-column:1/-1;
+    grid-row:2;
+    width:min(72vw,320px);
+    margin-top:8px;
+    justify-self:center;
+  }
+}
+
+@media (max-width:390px){
+  .illustration-section--storyboards .comic-storyboard-grid{
+    grid-template-columns:1fr;
+  }
+  .illustration-section--storyboards .comic-storyboard-stack--left,
+  .illustration-section--storyboards .comic-storyboard-stack--middle,
+  .illustration-section--storyboards .comic-storyboard-process{
+    grid-column:1;
+    width:min(100%,330px);
+    justify-self:center;
+  }
+  .illustration-section--storyboards .comic-storyboard-stack--left{grid-row:1; width:min(68%,220px);}
+  .illustration-section--storyboards .comic-storyboard-stack--middle{grid-row:2;}
+  .illustration-section--storyboards .comic-storyboard-process{grid-row:3; width:min(78%,260px);}
+}
+</style><style id="storyboard-centre-row-correction">
+/* Final storyboard correction: keep the side columns vertical, place the two
+   main spreads next to each other, and preserve the compact process image. */
+.illustration-section--storyboards .comic-storyboard-grid{
+  grid-template-columns:minmax(120px,.52fr) minmax(500px,1.72fr) minmax(210px,.76fr);
+  align-items:center;
+}
+.illustration-section--storyboards .comic-storyboard-stack--middle{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-rows:auto;
+  align-items:center;
+  align-content:center;
+  gap:clamp(12px,1.55vw,26px);
+}
+.illustration-section--storyboards .comic-storyboard-stack--middle .comic-media{
+  min-width:0;
+  width:100%;
+  align-self:center;
+}
+.illustration-section--storyboards .comic-storyboard-stack--middle .comic-media img{
+  width:100%;
+  height:auto;
+  object-fit:contain;
+}
+
+@media (max-width:1100px){
+  .illustration-section--storyboards .comic-storyboard-grid{
+    grid-template-columns:minmax(100px,.48fr) minmax(390px,1.62fr) minmax(175px,.72fr);
+  }
+}
+
+@media (max-width:780px) and (min-width:561px){
+  .illustration-section--storyboards .comic-storyboard-grid{
+    grid-template-columns:minmax(72px,.42fr) minmax(300px,1.62fr) minmax(125px,.68fr);
+  }
+  .illustration-section--storyboards .comic-storyboard-stack--middle{
+    gap:10px;
+  }
+}
+
+@media (max-width:560px){
+  .illustration-section--storyboards .comic-storyboard-stack--middle{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    grid-template-rows:auto;
+    gap:10px;
+  }
+}
+
+@media (max-width:390px){
+  .illustration-section--storyboards .comic-storyboard-stack--middle{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    width:100%;
+  }
+}
+</style><style id="grit-1000-style">
+.grit-section{
+  --grit-bg:#030303; --grit-fg:#f6f6f2; --grit-dim:rgba(246,246,242,.72); --grit-line:rgba(255,255,255,.18);
+  position:relative; isolation:isolate; overflow:clip; padding:0!important; min-height:100vh; background:#030303!important; color:var(--grit-fg)!important;
+  font-family:"Onest","Helvetica Neue",Arial,sans-serif;
+}
+.grit-section h2,.grit-section h3,.grit-step-label,.grit-toggle{font-family:Impact,Haettenschweiler,"Arial Narrow Bold",sans-serif; font-weight:400;}
+.grit-video-bg{position:absolute; inset:0; z-index:-3; overflow:visible; pointer-events:none;}
+.grit-video-sticky{position:sticky; top:0; width:100%; height:100vh; overflow:hidden; background:#000;}
+.grit-video{position:absolute; left:50%; top:50%; width:100vh; height:100vw; min-width:120vh; min-height:120vw; object-fit:cover; transform:translate(-50%,-50%) rotate(-90deg) scale(1.04); transform-origin:center; filter:contrast(1.08) saturate(.9) brightness(.78);}
+.grit-video-shade{position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,.34),rgba(0,0,0,.58) 42%,rgba(0,0,0,.70));}
+.grit-intro{min-height:86vh; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:clamp(34px,6vw,72px); padding:calc(var(--header-h) + 58px) 24px 74px; text-align:center; background:rgba(0,0,0,.12);}
+.grit-logo-switch{position:relative; width:min(820px,82vw); aspect-ratio:1531/935; display:grid; place-items:center; filter:drop-shadow(0 14px 42px rgba(0,0,0,.55));}
+.grit-logo-img{position:absolute; inset:0; width:100%; height:100%; object-fit:contain; transition:opacity .72s cubic-bezier(.22,.61,.36,1), transform .85s cubic-bezier(.22,.61,.36,1), filter .72s ease; will-change:opacity,transform;}
+.grit-logo-img--outline{opacity:1; transform:scale(1);}
+.grit-logo-img--filled{opacity:0; transform:scale(.995); filter:blur(.4px);}
+.grit-logo-switch:hover .grit-logo-img--outline{opacity:0; transform:scale(1.006);}
+.grit-logo-switch:hover .grit-logo-img--filled{opacity:1; transform:scale(1); filter:blur(0);}
+.grit-toggle{appearance:none; border:2px solid #fff; background:#050505; color:#fff; min-width:min(560px,86vw); padding:20px 34px; font-size:clamp(22px,2.4vw,34px); letter-spacing:.045em; text-transform:uppercase; text-align:center; border-radius:48% 52% 45% 55% / 55% 46% 54% 45%; transform:rotate(-.45deg); box-shadow:0 0 0 1px rgba(255,255,255,.14) inset; transition:background .28s,color .28s,transform .28s,box-shadow .28s;}
+.grit-toggle:hover,.grit-toggle:focus-visible{background:#fff; color:#050505; transform:rotate(.35deg) scale(1.025); box-shadow:0 0 36px rgba(255,255,255,.16);}
+.grit-toggle-label--open{display:none}.grit-toggle[aria-expanded=true] .grit-toggle-label--closed{display:none}.grit-toggle[aria-expanded=true] .grit-toggle-label--open{display:inline}
+.grit-content{position:relative; padding:0 28px 112px; background:linear-gradient(180deg,rgba(0,0,0,.32),rgba(0,0,0,.52) 24%,rgba(0,0,0,.61));}
+.grit-content[hidden]{display:none!important}.grit-content>section{width:min(100%,1440px); margin:0 auto; color:var(--grit-fg); background:transparent;}
+.grit-about{padding:112px 0 110px; display:block; border-top:1px solid var(--grit-line);}
+.grit-lead{max-width:1050px; margin:0; font-family:Impact,Haettenschweiler,"Arial Narrow Bold",sans-serif; font-size:clamp(40px,6vw,92px); line-height:.94; letter-spacing:.005em; text-transform:uppercase; text-align:left;}
+.grit-about-copy{max-width:900px; margin-top:48px; display:grid; gap:20px;}
+.grit-about-copy p{margin:0; color:var(--grit-dim); font-size:clamp(16px,1.35vw,20px); line-height:1.72; letter-spacing:.005em;}
+.grit-process,.grit-work-section{padding:96px 0 110px; border-top:1px solid var(--grit-line);}
+.grit-section-head h3,.grit-work-head h3{margin:0; font-size:clamp(42px,6.2vw,94px); line-height:.9; letter-spacing:.008em; text-transform:uppercase;}
+.grit-steps{list-style:none; margin:58px 0 0; padding:0; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); border-top:1px solid var(--grit-line); border-left:1px solid var(--grit-line);}
+.grit-steps li{min-height:180px; padding:20px; display:flex; flex-direction:column; justify-content:space-between; border-right:1px solid var(--grit-line); border-bottom:1px solid var(--grit-line); background:rgba(0,0,0,.24); backdrop-filter:blur(2px); transition:background .2s,color .2s;}
+.grit-steps li:hover{background:#f4f4ef;color:#050505}.grit-step-num{font-family:var(--font-mono);font-size:10px;opacity:.6}.grit-step-label{font-size:clamp(24px,2.3vw,36px);line-height:1;text-transform:uppercase}.grit-process-note{margin:36px 0 0 auto;max-width:760px;color:var(--grit-dim);font-size:15px;line-height:1.7}
+.grit-work-head{display:grid; grid-template-columns:minmax(0,1fr) minmax(280px,.48fr); gap:44px; align-items:end; margin-bottom:42px}.grit-work-head p{margin:0;color:var(--grit-dim);font-size:14px;line-height:1.7}
+.grit-gallery{overflow:hidden; border-top:1px solid var(--grit-line); border-bottom:1px solid var(--grit-line); cursor:grab; touch-action:pan-y; background:rgba(0,0,0,.18); backdrop-filter:blur(2px)}.grit-gallery.is-dragging{cursor:grabbing}.grit-gallery-rail{display:flex;width:max-content;gap:0;transform:translate3d(0,0,0);will-change:transform}
+.grit-card{appearance:none;flex:0 0 clamp(280px,30vw,460px);width:clamp(280px,30vw,460px);padding:0;border:0;border-right:1px solid var(--grit-line);background:rgba(0,0,0,.42);color:#fff;text-align:left;overflow:hidden;transition:width .36s cubic-bezier(.2,.8,.2,1),flex-basis .36s cubic-bezier(.2,.8,.2,1),background .25s}.grit-card:hover,.grit-card.is-active{flex-basis:clamp(340px,37vw,580px);width:clamp(340px,37vw,580px);background:rgba(255,255,255,.05)}
+.grit-card-media{position:relative;display:block;aspect-ratio:4/5;overflow:hidden;background:#0a0a0a}.grit-card-meta{min-height:76px;display:grid;grid-template-columns:42px 1fr;gap:12px;padding:14px 16px;align-items:start;font-size:11px;letter-spacing:.06em;text-transform:uppercase}.grit-card-meta>.mono{font-size:9px;color:var(--grit-dim)}.grit-gallery-hint{margin-top:12px;color:var(--grit-dim);font-family:var(--font-mono);font-size:8px;letter-spacing:.12em;text-transform:uppercase}
+.grit-pax-card{flex-basis:clamp(300px,31vw,490px);width:clamp(300px,31vw,490px)}.grit-pax-card:hover{flex-basis:clamp(350px,38vw,600px);width:clamp(350px,38vw,600px)}.grit-pax-media{aspect-ratio:3/4;background:#050505}.grit-pax-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .72s cubic-bezier(.22,.61,.36,1),transform 1.05s cubic-bezier(.22,.61,.36,1),filter .72s ease;will-change:opacity,transform}.grit-pax-img--cover{opacity:1;transform:scale(1)}.grit-pax-img--detail{opacity:0;transform:scale(1.025);filter:brightness(.92)}.grit-pax-card:hover .grit-pax-img--cover,.grit-pax-card:focus-visible .grit-pax-img--cover{opacity:0;transform:scale(.985)}.grit-pax-card:hover .grit-pax-img--detail,.grit-pax-card:focus-visible .grit-pax-img--detail{opacity:1;transform:scale(1);filter:brightness(1)}
+.pax-modal{position:fixed;inset:0;z-index:5000;display:grid;place-items:center;padding:clamp(18px,4vw,54px);background:rgba(0,0,0,.92);backdrop-filter:blur(10px)}.pax-modal[hidden]{display:none!important}.pax-modal-image{max-width:min(92vw,1100px);max-height:88vh;width:auto;height:auto;object-fit:contain;box-shadow:0 0 0 1px rgba(255,255,255,.16)}.pax-modal-close{position:fixed;right:24px;top:18px;border:0;background:none;color:#fff;font:48px/1 Arial,sans-serif;padding:4px 12px}
+.grit-bottom-close{width:min(100%,1440px);margin:0 auto;padding:92px 0 10px;display:flex;justify-content:center;border-top:1px solid var(--grit-line)}.grit-toggle--bottom{min-width:min(520px,86vw)}
+@media(max-width:800px){.grit-video{width:100vh;height:100vw;min-width:145vh;min-height:145vw}.grit-logo-switch{width:min(92vw,680px)}.grit-content{padding-left:18px;padding-right:18px}.grit-about{padding:82px 0}.grit-work-head{grid-template-columns:1fr;align-items:start}.grit-steps{grid-template-columns:repeat(2,1fr)}.grit-card,.grit-pax-card{flex-basis:74vw;width:74vw}.grit-card:hover,.grit-pax-card:hover{flex-basis:84vw;width:84vw}}
+@media(max-width:480px){.grit-intro{min-height:76vh}.grit-toggle{font-size:23px;padding:17px 22px}.grit-steps{grid-template-columns:1fr}.grit-steps li{min-height:126px}.grit-process,.grit-work-section{padding:78px 0 88px}.grit-card,.grit-pax-card{flex-basis:84vw;width:84vw}.grit-card:hover,.grit-pax-card:hover{flex-basis:88vw;width:88vw}}
+</style><link href="portfolio-redesign.css" rel="stylesheet"/></head>
+<body>
+<header class="top"><img alt="PES" class="logo-img" src="assets/2c7dd84c74bdf943f27e.png" loading="lazy" decoding="async"/><nav aria-label="Основная навигация" class="site-nav"><a href="#ch5"><span class="nav-num">01</span><span data-ru="">Работы</span><span data-en="">Work</span></a><a href="#about"><span class="nav-num">02</span><span data-ru="">Обо мне</span><span data-en="">About</span></a><a href="#contact"><span class="nav-num">03</span><span data-ru="">Контакты</span><span data-en="">Contact</span></a></nav><div class="header-tools"><nav class="langtoggle">
+<button class="active" id="btn-ru">RU</button>
+<button id="btn-en">EN</button>
+</nav></div></header><nav aria-label="Оглавление проектов" class="chapter-rail"><a aria-label="Проект 01" data-section="ch5" href="#ch5">01</a><a aria-label="Проект 02" data-section="ch1" href="#ch1">02</a><a aria-label="Проект 03" data-section="ch2" href="#ch2">03</a><a aria-label="Проект 04" data-section="ch3" href="#ch3">04</a><a aria-label="Проект 05" data-section="ch4" href="#ch4">05</a><a aria-label="Проект 06" data-section="ch6" href="#ch6">06</a></nav>
+<!-- HERO -->
+<section class="hero" id="hero">
+<div class="eyebrow caps">
+<span data-ru="">Портфолио — графический дизайн, иллюстрация, 3D</span>
+<span data-en="">Portfolio — graphic design, illustration, 3D</span>
+</div>
+<div class="hero-intro-grid">
+<div class="hero-logo-wrap">
+<img alt="PES" class="hero-logo" src="assets/13356e11afda547bde1b.png" loading="eager" decoding="async" fetchpriority="high"/>
+</div>
+<figure class="hero-photo-card">
+<div class="hero-photo-wrap">
+<img alt="Павел, PES" class="hero-photo" loading="eager" src="assets/a2e86654f447dd839d05.jpg"/>
+</div>
+<figcaption class="hero-photo-caption caps">
+<span data-ru="">Портрет / PES</span><span data-en="">Portrait / PES</span>
+<span>01</span>
+</figcaption>
+</figure>
+</div>
+<div class="hero-about" id="about">
+<div class="hero-about-text">
+<p class="hero-name serif"><span data-ru="">Павел, он же PЁS</span><span data-en="">Pavel, also known as PЁS</span></p>
+<p data-ru="">— графический дизайнер и 3D-художник. Создаю айдентику, упаковку, иллюстрации и мерч для брендов и локальных проектов — от первой концепции до готовых макетов и физических объектов.</p>
+<p data-ru="">Работаю с брендами, агентствами и независимыми проектами. Доступен для коммерческих заказов и коллабораций.</p>
+<p data-en="">— a graphic designer and 3D artist. I create identities, packaging, illustrations, and merchandise for brands and local projects — from the first concept to production-ready layouts and physical objects.</p>
+<p data-en="">I work with brands, agencies, and independent projects. Available for commercial commissions and collaborations.</p>
+</div>
+<div class="hero-about-skills">
+<div class="lbl caps"><span data-ru="">Направления</span><span data-en="">Disciplines</span></div>
+<ul><li><span data-ru="">Айдентика</span><span data-en="">Branding</span><span>01</span></li><li><span data-ru="">Инфографика</span><span data-en="">Infographics</span><span>02</span></li><li><span data-ru="">3D-моделирование</span><span data-en="">3D modeling</span><span>03</span></li><li><span data-ru="">Полиграфия</span><span data-en="">Print design</span><span>04</span></li><li><span data-ru="">Иллюстрация</span><span data-en="">Illustration</span><span>05</span></li><li><span data-ru="">Плакаты и эксперименты</span><span data-en="">Posters &amp; experiments</span><span>06</span></li></ul>
+</div>
+</div>
+</section>
+<!-- CH 1 — BRANDING -->
+<section class="chapter" id="ch5">
+<div class="chapter-head">
+<div class="chapter-title-wrap">
+<h2 class="chapter-title serif">
+<img alt="" class="hand" src="assets/ea924036de98921c84a7.png" loading="lazy" decoding="async"/>
+<span data-ru="">Плакаты и эксперименты</span><span data-en="">Posters &amp; experiments</span>
+<img alt="" class="hand" src="assets/5bfeb3f9fd73a3227aa7.png" loading="lazy" decoding="async"/>
+<span class="ul"></span>
+</h2>
+</div>
+<div class="chapter-index mono">01 / 06</div></div><div class="project-overview"><dl class="project-facts mono"><div class="project-fact"><dt><span data-ru="">Проект</span><span data-en="">Project</span></dt><dd><span data-ru="">Личные проекты</span><span data-en="">Personal projects</span></dd></div><div class="project-fact"><dt><span data-ru="">Год</span><span data-en="">Year</span></dt><dd><span data-ru="">2022–2025</span><span data-en="">2022–2025</span></dd></div><div class="project-fact"><dt><span data-ru="">Инструменты</span><span data-en="">Tools</span></dt><dd><span data-ru="">Adobe Photoshop, Adobe Illustrator, Blender</span><span data-en="">Adobe Photoshop, Adobe Illustrator, Blender</span></dd></div></dl><div class="project-summary"><div class="project-summary-label mono"><span data-ru="">Описание</span><span data-en="">Summary</span></div><p><span data-ru="">От новогодней открытки до ностальгии по 2000-м.</span><span data-en="">From a New Year card to 2000s nostalgia.</span></p></div></div>
+<div class="poster-carousel" data-poster-carousel="">
+<div class="poster-carousel-meta mono">
+<span data-ru="">Автоматическая галерея · наведите, чтобы остановить · перетаскивайте</span>
+<span data-en="">Automatic gallery · hover to pause · drag to browse</span>
+<span aria-hidden="true" class="poster-direction">←</span>
+</div>
+<div class="poster-viewport">
+<div class="poster-track">
+<figure class="poster-item">
+<div class="poster-card-inner">
+<img alt="lost boy poster" draggable="false" src="assets/af5ac167f743177bf751.jpg" loading="lazy" decoding="async"/>
+<figcaption class="poster-caption mono">
+<span class="poster-number">01</span>
+<span data-ru="">Плакат «Lost Boy»</span>
+<span data-en="">"Lost Boy" poster</span>
+</figcaption>
+</div>
+</figure>
+<figure class="poster-item">
+<div class="poster-card-inner">
+<img alt="2000s wallpaper" draggable="false" src="assets/a9d4f4ffeb883bfad4f0.jpg" loading="lazy" decoding="async"/>
+<figcaption class="poster-caption mono">
+<span class="poster-number">02</span>
+<span data-ru="">Обои в стиле 2000-х</span>
+<span data-en="">2000s-style wallpaper</span>
+</figcaption>
+</div>
+</figure>
+<figure class="poster-item">
+<div class="poster-card-inner">
+<img alt="profession poster" draggable="false" src="assets/8beae2e80afe774e3099.jpg" loading="lazy" decoding="async"/>
+<figcaption class="poster-caption mono">
+<span class="poster-number">03</span>
+<span data-ru="">«Выбери профессию будущего»</span>
+<span data-en="">"Choose the profession of the future"</span>
+</figcaption>
+</div>
+</figure>
+<figure class="poster-item">
+<div class="poster-card-inner">
+<img alt="ny poster" draggable="false" src="assets/e71d1ef86760c8386158.jpg" loading="lazy" decoding="async"/>
+<figcaption class="poster-caption mono">
+<span class="poster-number">04</span>
+<span data-ru="">Новогодний плакат</span>
+<span data-en="">New Year poster</span>
+</figcaption>
+</div>
+</figure>
+<figure class="poster-item">
+<div class="poster-card-inner">
+<img alt="music magazine poster" draggable="false" src="assets/445ad0bb6bc345244d80.jpg" loading="lazy" decoding="async"/>
+<figcaption class="poster-caption mono">
+<span class="poster-number">05</span>
+<span data-ru="">Обложка музыкального журнала</span>
+<span data-en="">Music magazine cover</span>
+</figcaption>
+</div>
+</figure>
+<figure class="poster-item">
+<div class="poster-card-inner">
+<img alt="swirl poster" draggable="false" src="assets/81aa3c54ab945943dde7.jpg" loading="lazy" decoding="async"/>
+<figcaption class="poster-caption mono">
+<span class="poster-number">06</span>
+<span data-ru="">Плакат, немецкий текст</span>
+<span data-en="">Poster, German copy</span>
+</figcaption>
+</div>
+</figure>
+<figure class="poster-item">
+<div class="poster-card-inner">
+<img alt="last chance poster" draggable="false" src="assets/9ace9553768fa9dfb9e4.jpg" loading="lazy" decoding="async"/>
+<figcaption class="poster-caption mono">
+<span class="poster-number">07</span>
+<span data-ru="">«The Last Chance» — постер</span>
+<span data-en="">"The Last Chance" poster</span>
+</figcaption>
+</div>
+</figure>
+<figure class="poster-item">
+<div class="poster-card-inner">
+<img alt="design poster" draggable="false" src="assets/5a35470abd87e552684c.jpg" loading="lazy" decoding="async"/>
+<figcaption class="poster-caption mono">
+<span class="poster-number">08</span>
+<span data-ru="">«Дизайн» — исполни мечту</span>
+<span data-en="">"Design" — fulfil the dream</span>
+</figcaption>
+</div>
+</figure>
+</div>
+</div>
+</div>
+</section><section class="chapter" id="ch1">
+<div class="chapter-head">
+<div class="chapter-title-wrap">
+<h2 class="chapter-title serif">
+<img alt="" class="hand" src="assets/ea924036de98921c84a7.png" loading="lazy" decoding="async"/>
+<span data-ru="">Брендинг и упаковка</span><span data-en="">Branding &amp; packaging</span>
+<img alt="" class="hand" src="assets/5bfeb3f9fd73a3227aa7.png" loading="lazy" decoding="async"/>
+<span class="ul"></span>
+</h2>
+</div>
+<div class="chapter-index mono">02 / 06</div></div><div class="project-overview"><dl class="project-facts mono"><div class="project-fact"><dt><span data-ru="">Проект</span><span data-en="">Project</span></dt><dd><span data-ru="">LABÁ PRO</span><span data-en="">LABÁ PRO</span></dd></div><div class="project-fact"><dt><span data-ru="">Год</span><span data-en="">Year</span></dt><dd><span data-ru="">2025</span><span data-en="">2025</span></dd></div><div class="project-fact"><dt><span data-ru="">Роль</span><span data-en="">Role</span></dt><dd><span data-ru="">Айдентика, дизайн упаковки</span><span data-en="">Identity, packaging design</span></dd></div><div class="project-fact"><dt><span data-ru="">Инструменты</span><span data-en="">Tools</span></dt><dd><span data-ru="">Procreate, Adobe Illustrator</span><span data-en="">Procreate, Adobe Illustrator</span></dd></div></dl><div class="project-summary"><div class="project-summary-label mono"><span data-ru="">Описание</span><span data-en="">Summary</span></div><p><span data-ru="">LABÁ PRO — космецевтическая линия. Айдентика, флакон, этикетка.</span><span data-en="">LABÁ PRO — a cosmeceutical line. Identity, bottle, label.</span></p></div></div>
+<div class="branding-showcase" data-branding-showcase=""><div class="branding-stage"><div class="branding-stage-meta mono"><span data-ru="">Система упаковки · наведите на варианты справа</span><span data-en="">Packaging system · hover over the options</span></div><div class="branding-stage-frame"><img alt="LABA bottle black" class="branding-stage-image is-active" src="assets/eaadd580288a51156292.jpg" loading="lazy" decoding="async"/><img alt="" aria-hidden="true" class="branding-stage-image" src="assets/eaadd580288a51156292.jpg" loading="lazy" decoding="async"/></div></div><div class="branding-index"><button class="branding-tile is-active" data-branding-alt="LABA bottle black" data-branding-src="assets/eaadd580288a51156292.jpg" type="button"><span class="branding-tile-number mono">01</span><span class="branding-tile-thumb"><img alt="LABA bottle black" decoding="async" loading="eager" src="assets/eaadd580288a51156292.jpg"/></span><span class="branding-tile-caption"><span data-ru="">Флакон, чёрный вариант</span><span data-en="">Bottle, black colorway</span></span></button><button class="branding-tile" data-branding-alt="LABA bottle white" data-branding-src="assets/4f6c2f001cdd19f410c1.jpg" type="button"><span class="branding-tile-number mono">02</span><span class="branding-tile-thumb"><img alt="LABA bottle white" decoding="async" loading="eager" src="assets/4f6c2f001cdd19f410c1.jpg"/></span><span class="branding-tile-caption"><span data-ru="">Флакон, белый вариант</span><span data-en="">Bottle, white colorway</span></span></button><button class="branding-tile" data-branding-alt="LABA label black" data-branding-src="assets/40041f7207e8ca14646a.jpg" type="button"><span class="branding-tile-number mono">03</span><span class="branding-tile-thumb"><img alt="LABA label black" decoding="async" loading="eager" src="assets/40041f7207e8ca14646a.jpg"/></span><span class="branding-tile-caption"><span data-ru="">Плоский макет этикетки</span><span data-en="">Flat label artwork</span></span></button><button class="branding-tile" data-branding-alt="LABA label white" data-branding-src="assets/5dfa4733bc617f4e1694.jpg" type="button"><span class="branding-tile-number mono">04</span><span class="branding-tile-thumb"><img alt="LABA label white" decoding="async" loading="eager" src="assets/5dfa4733bc617f4e1694.jpg"/></span><span class="branding-tile-caption"><span data-ru="">Инверсия для светлой упаковки</span><span data-en="">Inverted for light packaging</span></span></button></div></div>
+</section>
+<!-- CH 2 — MARKETPLACE INFOGRAPHICS -->
+<section class="chapter" id="ch2">
+<div class="chapter-head">
+<div class="chapter-title-wrap">
+<h2 class="chapter-title serif">
+<img alt="" class="hand" src="assets/ea924036de98921c84a7.png" loading="lazy" decoding="async"/>
+<span data-ru="">Инфографика</span><span data-en="">Infographics</span>
+<img alt="" class="hand" src="assets/5bfeb3f9fd73a3227aa7.png" loading="lazy" decoding="async"/>
+<span class="ul"></span>
+</h2>
+</div>
+<div class="chapter-index mono">03 / 06</div></div><div class="project-overview"><dl class="project-facts mono"><div class="project-fact"><dt><span data-ru="">Проект</span><span data-en="">Project</span></dt><dd><span data-ru="">Карточка товара для магазина техники</span><span data-en="">Product card for an electronics store</span></dd></div><div class="project-fact"><dt><span data-ru="">Год</span><span data-en="">Year</span></dt><dd><span data-ru="">2025</span><span data-en="">2025</span></dd></div><div class="project-fact"><dt><span data-ru="">Роль</span><span data-en="">Role</span></dt><dd><span data-ru="">Визуальная концепция, дизайн-система карточек, инфографика</span><span data-en="">Visual concept, product-card design system, infographics</span></dd></div><div class="project-fact"><dt><span data-ru="">Инструменты</span><span data-en="">Tools</span></dt><dd><span data-ru="">Adobe Photoshop, Adobe Illustrator</span><span data-en="">Adobe Photoshop, Adobe Illustrator</span></dd></div></dl><div class="project-summary"><div class="project-summary-label mono"><span data-ru="">Описание</span><span data-en="">Summary</span></div><p><span data-ru="">Клиент попросил создать карточки для своих товаров в современном визуальном стиле — с акцентом на выразительную подачу продукта, заметность в ленте и понятную инфографику. Концепция ориентирована преимущественно на молодую аудиторию и геймеров: динамичная композиция, технологичная эстетика и структурированная подача характеристик помогают быстро считывать ключевые преимущества товаров.</span><span data-en="">The client requested modern product cards with a strong visual impact, clear product presentation and easy-to-scan infographics. The concept is aimed primarily at a younger audience and gamers, combining a dynamic composition, a technology-driven aesthetic and structured product information to communicate key features quickly.</span></p></div></div>
+<div aria-label="Карточки товаров" class="product-panels">
+<section class="product-panel" data-loop-gallery="">
+<div class="product-panel-head">
+<div class="product-panel-title mono">
+<span data-ru="">Карточка наушников FIFINE H6</span>
+<span data-en="">FIFINE H6 headphone card</span>
+</div>
+<div class="product-panel-hint mono">
+<span data-ru="">Перетаскивание →</span>
+<span data-en="">Drag →</span>
+</div>
+</div>
+<div class="product-panel-viewport">
+<div class="product-panel-track"><article class="product-media-card" data-original-index="0">
+<img alt="specs card" decoding="async" draggable="false" loading="eager" src="assets/54810e4f02e0e4c065e3.jpg"/>
+<div class="product-media-caption mono"><span data-ru="">Технические характеристики</span><span data-en="">Specs card</span></div>
+</article><article class="product-media-card" data-original-index="1">
+<img alt="earcups card" decoding="async" draggable="false" loading="eager" src="assets/5d547bf8d9d061d364af.jpg"/>
+<div class="product-media-caption mono"><span data-ru="">Амбушюры и регулятор громкости</span><span data-en="">Ear cushions &amp; volume dial</span></div>
+</article><article class="product-media-card" data-original-index="2">
+<img alt="fifine main" decoding="async" draggable="false" loading="eager" src="assets/ebcf81d8cd18d31fc02c.jpg"/>
+<div class="product-media-caption mono"><span data-ru="">Титульная карточка</span><span data-en="">Cover card</span></div>
+</article><article class="product-media-card" data-original-index="0">
+<img alt="specs card" decoding="async" draggable="false" loading="eager" src="assets/54810e4f02e0e4c065e3.jpg"/>
+<div class="product-media-caption mono"><span data-ru="">Технические характеристики</span><span data-en="">Specs card</span></div>
+</article><article class="product-media-card" data-original-index="1">
+<img alt="earcups card" decoding="async" draggable="false" loading="eager" src="assets/5d547bf8d9d061d364af.jpg"/>
+<div class="product-media-caption mono"><span data-ru="">Амбушюры и регулятор громкости</span><span data-en="">Ear cushions &amp; volume dial</span></div>
+</article><article class="product-media-card" data-original-index="2">
+<img alt="fifine main" decoding="async" draggable="false" loading="eager" src="assets/ebcf81d8cd18d31fc02c.jpg"/>
+<div class="product-media-caption mono"><span data-ru="">Титульная карточка</span><span data-en="">Cover card</span></div>
+</article></div>
+</div>
+</section>
+<section class="product-panel" data-loop-gallery="">
+<div class="product-panel-head">
+<div class="product-panel-title mono">
+<span data-ru="">Карточка колонки</span>
+<span data-en="">Speaker product card</span>
+</div>
+<div class="product-panel-hint mono">
+<span data-ru="">Перетаскивание →</span>
+<span data-en="">Drag →</span>
+</div>
+</div>
+<div class="product-panel-viewport">
+<div class="product-panel-track"><article class="product-media-card" data-original-index="0">
+<img alt="speaker card" decoding="async" draggable="false" loading="eager" src="assets/3addbafa1af4cc2be767.jpg"/>
+<div class="product-media-caption mono"><span data-ru="">Колонка — карточка</span><span data-en="">Speaker card</span></div>
+</article><article class="product-media-card" data-original-index="1">
+<img alt="speaker sound" decoding="async" draggable="false" loading="eager" src="assets/398fbcf89bf5d69dda00.jpg"/>
+<div class="product-media-caption mono"><span data-ru="">Колонка — звук</span><span data-en="">Speaker — sound</span></div>
+</article><article class="product-media-card" data-original-index="2">
+<img alt="battery card" decoding="async" draggable="false" loading="eager" src="assets/07966c6489f2281b2829.jpg"/>
+<div class="product-media-caption mono"><span data-ru="">Автономность и ёмкость</span><span data-en="">Battery life &amp; capacity</span></div>
+</article><article class="product-media-card" data-original-index="3">
+<img alt="buttons card" decoding="async" draggable="false" loading="eager" src="assets/699940087cbaf12e27ac.jpg"/>
+<div class="product-media-caption mono"><span data-ru="">Органы управления</span><span data-en="">Controls</span></div>
+</article><article class="product-media-card" data-original-index="0">
+<img alt="speaker card" decoding="async" draggable="false" loading="eager" src="assets/3addbafa1af4cc2be767.jpg"/>
+<div class="product-media-caption mono"><span data-ru="">Колонка — карточка</span><span data-en="">Speaker card</span></div>
+</article><article class="product-media-card" data-original-index="1">
+<img alt="speaker sound" decoding="async" draggable="false" loading="eager" src="assets/398fbcf89bf5d69dda00.jpg"/>
+<div class="product-media-caption mono"><span data-ru="">Колонка — звук</span><span data-en="">Speaker — sound</span></div>
+</article><article class="product-media-card" data-original-index="2">
+<img alt="battery card" decoding="async" draggable="false" loading="eager" src="assets/07966c6489f2281b2829.jpg"/>
+<div class="product-media-caption mono"><span data-ru="">Автономность и ёмкость</span><span data-en="">Battery life &amp; capacity</span></div>
+</article><article class="product-media-card" data-original-index="3">
+<img alt="buttons card" decoding="async" draggable="false" loading="eager" src="assets/699940087cbaf12e27ac.jpg"/>
+<div class="product-media-caption mono"><span data-ru="">Органы управления</span><span data-en="">Controls</span></div>
+</article></div>
+</div>
+</section>
+</div>
+</section>
+<!-- CH 3 — 3D / MERCH -->
+<!-- CH 4 — PRINT -->
+<section class="chapter" id="ch3">
+<div class="chapter-head">
+<div class="chapter-title-wrap">
+<h2 class="chapter-title serif">
+<img alt="" class="hand" src="assets/ea924036de98921c84a7.png" loading="lazy" decoding="async"/>
+<span data-ru="">Полиграфия</span><span data-en="">Print</span>
+<img alt="" class="hand" src="assets/5bfeb3f9fd73a3227aa7.png" loading="lazy" decoding="async"/>
+<span class="ul"></span>
+</h2>
+</div>
+<div class="chapter-index mono">04 / 06</div></div><div class="project-overview"><dl class="project-facts mono"><div class="project-fact"><dt><span data-ru="">Проект</span><span data-en="">Project</span></dt><dd><span data-ru="">Информационная брошюра</span><span data-en="">Information brochure</span></dd></div><div class="project-fact"><dt><span data-ru="">Год</span><span data-en="">Year</span></dt><dd><span data-ru="">2026</span><span data-en="">2026</span></dd></div><div class="project-fact"><dt><span data-ru="">Роль</span><span data-en="">Role</span></dt><dd><span data-ru="">Дизайн печатной продукции</span><span data-en="">Print design</span></dd></div><div class="project-fact"><dt><span data-ru="">Инструменты</span><span data-en="">Tools</span></dt><dd><span data-ru="">Procreate, Adobe Illustrator</span><span data-en="">Procreate, Adobe Illustrator</span></dd></div></dl><div class="project-summary"><div class="project-summary-label mono"><span data-ru="">Описание</span><span data-en="">Summary</span></div><p><span data-ru="">Заказчик обратился с задачей редизайна медицинских буклетов для пожилых пациентов. Важно было сохранить фирменную цветовую палитру клиники, одновременно сделать материалы крупными, наглядными и эмоционально комфортными. В качестве основы визуального языка использован дизайн-код инструкций IKEA: лаконичная композиция, минимум лишних деталей и последовательные иллюстрации, понятные с первого взгляда. Фотографии реальных пациентов были заменены нейтральными дружелюбными рисунками, которые деликатно показывают процедуры и способы крепления медицинского оборудования к телу человека, упрощая восприятие информации.</span><span data-en="">The client commissioned a redesign of medical booklets for older patients. The materials had to retain the clinic’s colour palette while becoming larger, clearer and more reassuring. The visual system draws on the design logic of IKEA instructions: concise layouts, minimal visual noise and sequential illustrations understood at a glance. Photographs of real patients were replaced with neutral, friendly drawings that explain procedures and the attachment of medical equipment to the body in a more discreet and accessible way.</span></p></div></div>
+<div class="print-showcase" data-print-showcase="">
+<div class="print-mockup-column">
+<div class="print-block-label mono">
+<span data-ru="">Финальный мокап · наведите, чтобы сменить ракурс</span>
+<span data-en="">Final mockup · hover to change the angle</span>
+</div>
+<button aria-label="Сменить ракурс мокапа" class="print-mockup-stage" type="button">
+<img alt="Мокап медицинского буклета, вид под углом" class="print-mockup-image print-mockup-image--primary" src="assets/862db90d02507a46d4ae.jpg" loading="lazy" decoding="async"/>
+<img alt="Мокап медицинского буклета, фронтальный вид" class="print-mockup-image print-mockup-image--secondary" src="assets/79ae9f095eeb2a4d27d3.jpg" loading="lazy" decoding="async"/>
+<span class="print-hover-note mono">
+<span data-ru="">Ракурс 01 → 02</span>
+<span data-en="">Angle 01 → 02</span>
+</span>
+</button>
+</div>
+<div class="print-process-column">
+<div class="print-block-label mono">
+<span data-ru="">Развороты · наведите, чтобы увидеть рабочие эскизы</span>
+<span data-en="">Spreads · hover to reveal the working sketches</span>
+</div>
+<button aria-label="Показать процесс разработки разворотов" class="print-spreads-stage" type="button">
+<span class="print-spreads-grid">
+<span class="print-spread-thumb"><img alt="nephro booklet" src="assets/a270d680322097782489.jpg" loading="lazy" decoding="async"/></span>
+<span class="print-spread-thumb"><img alt="cysto booklet" src="assets/6099a22d6bea564dec35.jpg" loading="lazy" decoding="async"/></span>
+</span>
+<img alt="Эскизы и структура медицинского буклета" class="print-sketch-overlay" src="assets/ebdc9d16ae077b71f0ba.jpg" loading="lazy" decoding="async"/>
+<span class="print-hover-note print-hover-note--right mono">
+<span data-ru="">Финал → процесс</span>
+<span data-en="">Final → process</span>
+</span>
+</button>
+<figure class="print-process-card">
+<img alt="Процесс разработки медицинской инфографики: от эскиза к финальной иллюстрации" src="assets/f1e80501423d4fd78750.jpg" loading="lazy" decoding="async"/>
+<figcaption class="mono">
+<span data-ru="">Разработка инфографики: от чернового эскиза к нейтральной дружелюбной иллюстрации</span>
+<span data-en="">Infographic development: from a rough sketch to a neutral, friendly illustration</span>
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<!-- CH 5 — COMIC / ILLUSTRATION -->
+<section class="chapter" id="ch4">
+<div class="chapter-head">
+<div class="chapter-title-wrap">
+<h2 class="chapter-title serif">
+<img alt="" class="hand" src="assets/ea924036de98921c84a7.png" loading="lazy" decoding="async"/><span data-ru="">Иллюстрация</span><span data-en="">Illustration</span>
+<img alt="" class="hand" src="assets/5bfeb3f9fd73a3227aa7.png" loading="lazy" decoding="async"/><span class="ul"></span>
+</h2>
+</div>
+<div class="chapter-index mono">05 / 06</div>
+</div>
+<div class="project-overview illustration-overview">
+<dl class="project-facts mono">
+<div class="project-fact"><dt><span data-ru="">Проект</span><span data-en="">Project</span></dt><dd><span data-ru="">Графический роман «Далекая земля»</span><span data-en="">Graphic novel “Distant Land”</span></dd></div>
+<div class="project-fact"><dt><span data-ru="">Год</span><span data-en="">Year</span></dt><dd><span data-ru="">2024</span><span data-en="">2024</span></dd></div>
+<div class="project-fact"><dt><span data-ru="">Роль</span><span data-en="">Role</span></dt><dd><span data-ru="">Концепция, сценарий, дизайн персонажей, раскадровка, отрисовка и верстка</span><span data-en="">Concept, story, character design, storyboarding, illustration and layout</span></dd></div>
+<div class="project-fact"><dt><span data-ru="">Инструменты</span><span data-en="">Tools</span></dt><dd><span data-ru="">Бумага, тушь, Adobe Photoshop</span><span data-en="">Paper, ink, Adobe Photoshop</span></dd></div>
+</dl>
+<div class="project-summary">
+<div class="project-summary-label mono"><span data-ru="">Описание</span><span data-en="">Summary</span></div>
+<p><span data-ru="">Идея авторского графического романа возникла во время разработки концепта персонажа. Создавая образ героя, я стараюсь наделить каждую деталь сюжетным значением — так появилась история о герое в красной маске и говорящем камне.</span><span data-en="">The idea for this original graphic novel emerged while developing a character concept. I try to give every detail of a character a narrative purpose, which led to the story of a hero in a red mask and a talking stone.</span></p>
+</div>
+</div>
+<div class="illustration-case">
+<section aria-labelledby="comic-concept-title" class="illustration-section illustration-section--concept">
+<header class="illustration-section-head">
+<div class="illustration-section-index mono">01</div>
+<div>
+<h3 id="comic-concept-title"><span data-ru="">Процесс создания комикса «Далекая земля»</span><span data-en="">Creating the “Distant Land” comic</span></h3>
+<p><span data-ru="">Вдохновением послужили манга «Дорохедоро» и американская военная одежда. В первых итерациях герой носил форму японских солдат 1905 года, но в процессе разработки от этой идеи я отказался.</span><span data-en="">The project was inspired by the manga “Dorohedoro” and American military clothing. Early versions used a 1905 Japanese military uniform, an idea later discarded during development.</span></p>
+</div>
+</header>
+<div class="comic-concept-grid"><div class="comic-concept-side comic-concept-side--left"><figure class="comic-media comic-media--side comic-media--hover"><img alt="Референс манги: динамическая сцена" decoding="async" loading="eager" src="assets/4e0dc8b9b918a44e545d.jpg"/></figure><figure class="comic-media comic-media--side comic-media--hover"><img alt="Референс манги с красным фоном" decoding="async" loading="eager" src="assets/ac43626e14689409cb6d.jpg"/></figure></div><figure class="comic-media comic-media--center"><img alt="Большой концепт главного персонажа и деталей мира" decoding="async" loading="eager" src="assets/ba4de61f70314f286b86.jpg"/></figure><div class="comic-concept-side comic-concept-side--right"><figure class="comic-media comic-media--side comic-media--hover"><img alt="Ранние эскизы военной формы и персонажей" decoding="async" loading="eager" src="assets/d2865b0bc11827f15762.jpg"/></figure><figure class="comic-media comic-media--side comic-media--hover"><img alt="Эскизы героя, оружия и окружения" decoding="async" loading="eager" src="assets/c1f846f997d94dc76942.jpg"/></figure></div></div>
+</section>
+<section aria-labelledby="comic-storyboard-title" class="illustration-section illustration-section--storyboards">
+<header class="illustration-section-head">
+<div class="illustration-section-index mono">02</div>
+<div>
+<h3 id="comic-storyboard-title"><span data-ru="">Раскадровка и развороты</span><span data-en="">Storyboards and spreads</span></h3>
+<p><span data-ru="">Каждый комикс начинается с раскадровки: сначала я рисовал страницы на бумаге, затем уточнял композицию, детали и текст в Adobe Photoshop.</span><span data-en="">Every comic begins with storyboards: I first drew the pages on paper, then refined their composition, details and lettering in Adobe Photoshop.</span></p>
+</div>
+</header>
+<div class="comic-storyboard-grid"><div class="comic-storyboard-stack comic-storyboard-stack--left"><figure class="comic-media comic-storyboard-small comic-media--hover"><img alt="Страница раскадровки в переулке" decoding="async" loading="lazy" src="assets/7c76a63e3cf6dab9c1eb.jpg"/></figure><figure class="comic-media comic-storyboard-small comic-media--hover"><img alt="Страница раскадровки с лестницей" decoding="async" loading="lazy" src="assets/12714357fce89995138f.jpg"/></figure></div><div class="comic-storyboard-stack comic-storyboard-stack--middle"><figure class="comic-media comic-storyboard-large"><img alt="Разворот комикса с панорамой города" decoding="async" loading="lazy" src="assets/00022b5cbc5384d334f7.jpg"/></figure><figure class="comic-media comic-storyboard-large"><img alt="Разворот комикса с динамической сценой" decoding="async" loading="lazy" src="assets/70d808fea58b4140943c.jpg"/></figure></div><figure class="comic-media comic-storyboard-process comic-media--hover"><img alt="Бумажная раскадровка страниц комикса «Далекая земля»" decoding="async" loading="eager" src="assets/fb46513ed933baf2a204.jpg"/></figure></div>
+</section>
+<section aria-labelledby="comic-final-title" class="illustration-section illustration-section--final">
+<header class="illustration-section-head">
+<div class="illustration-section-index mono">03</div>
+<div>
+<h3 id="comic-final-title"><span data-ru="">Готовый комикс</span><span data-en="">Finished comic</span></h3>
+<p><span data-ru="">Комикс был напечатан тиражом 10 экземпляров. Для издания разработаны основная и дополнительная обложки, а также экстра-иллюстрации, не вошедшие в основную историю.</span><span data-en="">The comic was printed in an edition of ten copies, with a main cover, an additional cover and extra illustrations that were not included in the core story.</span></p>
+</div>
+</header>
+<div class="comic-final-grid"><figure class="comic-media comic-final-mockup"><img alt="Мокап напечатанного комикса «Далекая земля»" decoding="async" loading="lazy" src="assets/7fb902da91822bd57599.jpg"/></figure><figure class="comic-media comic-final-cover comic-media--hover"><img alt="Основная вертикальная обложка комикса «Далекая земля»" decoding="async" loading="lazy" src="assets/2614a9a61ba9193ef05f.jpg"/></figure><figure class="comic-media comic-final-extra comic-media--hover"><img alt="Дополнительная обложка с персонажем" decoding="async" loading="lazy" src="assets/1ecb803fa19ddd11f076.jpg"/></figure></div>
+</section>
+</div>
+<section aria-labelledby="illustration-other-title" class="illustration-section illustration-section--other"><header class="illustration-section-head"><div class="illustration-section-index mono">04</div><div><h3 id="illustration-other-title"><span data-ru="">Другие работы</span><span data-en="">Other works</span></h3><p><span data-ru="">Дополнительная подборка иллюстраций и визуальных экспериментов.</span><span data-en="">A selection of additional illustrations and visual experiments.</span></p></div></header><div class="poster-carousel illustration-other-carousel" data-poster-carousel=""><div class="poster-carousel-meta mono"><span><span data-ru="">Другие работы</span><span data-en="">Other works</span></span><span aria-hidden="true" class="poster-direction">←</span></div><div class="poster-viewport"><div class="poster-track"><figure class="poster-item"><div class="poster-card-inner"><img alt="01 — Pax Anima" loading="lazy" src="assets/d830832d6683e01e4421.jpg"/></div><figcaption class="poster-caption mono"><span class="poster-number">01</span><span><span data-ru="">Pax Anima</span><span data-en="">Pax Anima</span></span></figcaption></figure><figure class="poster-item"><div class="poster-card-inner"><img alt="02 — Ледяной маг" loading="lazy" src="assets/4e0e7356d2e163973dae.jpg"/></div><figcaption class="poster-caption mono"><span class="poster-number">02</span><span><span data-ru="">Ледяной маг</span><span data-en="">Ледяной маг</span></span></figcaption></figure><figure class="poster-item"><div class="poster-card-inner"><img alt="03 — Встреча" loading="lazy" src="assets/27840775e0a9a3692c9f.jpg"/></div><figcaption class="poster-caption mono"><span class="poster-number">03</span><span><span data-ru="">Встреча</span><span data-en="">Встреча</span></span></figcaption></figure><figure class="poster-item"><div class="poster-card-inner"><img alt="04 — Колдун" loading="lazy" src="assets/877cc77c1dd2780620f2.jpg"/></div><figcaption class="poster-caption mono"><span class="poster-number">04</span><span><span data-ru="">Колдун</span><span data-en="">Колдун</span></span></figcaption></figure><figure class="poster-item"><div class="poster-card-inner"><img alt="05 — Потерявшийся рыцарь" loading="lazy" src="assets/24b7cf4dfa66c17d27df.jpg"/></div><figcaption class="poster-caption mono"><span class="poster-number">05</span><span><span data-ru="">Потерявшийся рыцарь</span><span data-en="">Потерявшийся рыцарь</span></span></figcaption></figure><figure class="poster-item"><div class="poster-card-inner"><img alt="06 — Работа к хоррор конкурсу по Team Fortress 2" loading="lazy" src="assets/d6db1f0e928777fe8558.jpg"/></div><figcaption class="poster-caption mono"><span class="poster-number">06</span><span><span data-ru="">Работа к хоррор конкурсу по Team Fortress 2</span><span data-en="">Работа к хоррор конкурсу по Team Fortress 2</span></span></figcaption></figure><figure class="poster-item"><div class="poster-card-inner"><img alt="07 — Плакат по D&amp;D партии" loading="lazy" src="assets/1ff6667f45f513c4f1da.jpg"/></div><figcaption class="poster-caption mono"><span class="poster-number">07</span><span><span data-ru="">Плакат по D&amp;D партии</span><span data-en="">Плакат по D&amp;D партии</span></span></figcaption></figure><figure class="poster-item"><div class="poster-card-inner"><img alt="08 — Плакат по D&amp;D партии" loading="lazy" src="assets/fde917b34bde2f874c13.jpg"/></div><figcaption class="poster-caption mono"><span class="poster-number">08</span><span><span data-ru="">Плакат по D&amp;D партии</span><span data-en="">Плакат по D&amp;D партии</span></span></figcaption></figure><figure class="poster-item"><div class="poster-card-inner"><img alt='09 — Плакат "ATTENTION"' loading="lazy" src="assets/3acb5ad44a70d3ed2239.png"/></div><figcaption class="poster-caption mono"><span class="poster-number">09</span><span><span data-ru="">Плакат "ATTENTION"</span><span data-en="">Плакат "ATTENTION"</span></span></figcaption></figure><figure class="poster-item"><div class="poster-card-inner"><img alt='10 — Обложка к комиксу "Далекая земля"' loading="lazy" src="assets/1bbabd09091158786800.jpg"/></div><figcaption class="poster-caption mono"><span class="poster-number">10</span><span><span data-ru="">Обложка к комиксу "Далекая земля"</span><span data-en="">Обложка к комиксу "Далекая земля"</span></span></figcaption></figure><figure class="poster-item"><div class="poster-card-inner"><img alt="11 — Открытка к 8 марта" loading="lazy" src="assets/1e8692022b13890e7892.jpg"/></div><figcaption class="poster-caption mono"><span class="poster-number">11</span><span><span data-ru="">Открытка к 8 марта</span><span data-en="">Открытка к 8 марта</span></span></figcaption></figure></div></div></div></section></section>
+<!-- CH 6 — EXPERIMENTS -->
+<!-- CONTACT -->
+<section aria-labelledby="grit-title" class="chapter grit-section" id="ch6"><div aria-hidden="true" class="grit-video-bg"><div class="grit-video-sticky"><video autoplay="" class="grit-video" data-grit-video="" muted="" playsinline="" preload="auto"><source src="assets/7b9a10103142287831da.mp4" type="video/mp4"/></video><div class="grit-video-shade"></div></div></div><div class="grit-intro"><div aria-label="1000GRIT" class="grit-logo-switch"><img alt="1000GRIT" class="grit-logo-img grit-logo-img--outline" src="assets/ddd38a4ac0ea11e8a975.png" loading="lazy" decoding="async"/><img alt="" aria-hidden="true" class="grit-logo-img grit-logo-img--filled" src="assets/bf8a316ba86712683774.png" loading="lazy" decoding="async"/></div><button aria-controls="grit-content" aria-expanded="false" class="grit-toggle" type="button"><span class="grit-toggle-label grit-toggle-label--closed"><span data-ru="">ОТКРЫТЬ 1000GRIT</span><span data-en="">OPEN 1000GRIT</span></span><span class="grit-toggle-label grit-toggle-label--open"><span data-ru="">СВЕРНУТЬ 1000GRIT</span><span data-en="">CLOSE 1000GRIT</span></span></button></div><div class="grit-content" hidden="" id="grit-content"><section class="grit-about"><p class="grit-lead"><span data-ru="">1000GRIT — АРТ-ПРОЕКТ PES × ПАКОСТЬ</span><span data-en="">1000GRIT — AN ART PROJECT BY PES × PAKOST</span></p><div class="grit-about-copy"><p><span data-ru="">1000GRIT — независимый арт-проект двух художников, PES и ПАКОСТЬ. Мы соединяем авторскую скульптуру, 3D-печать и ручную роспись с визуальным языком дарк-фэнтези и уличной культуры. В эстетике проекта смешиваются техно, хаус, магия и индустриальная шероховатость.</span><span data-en="">1000GRIT is an independent art project by two artists, PES and PAKOST. We combine original sculpture, 3D printing and hand painting with the visual language of dark fantasy and street culture, mixing techno, house, magic and industrial roughness.</span></p><p><span data-ru="">Мы создаем коллекционные фигурки, арт-объекты и индивидуальную сувенирную продукцию — от первой идеи до готового предмета. Производственный процесс может включать разработку эскиза, 3D-моделирование, печать, ручную покраску и упаковку.</span><span data-en="">We create collectible figures, art objects and custom merchandise — from the first idea to the finished object. The production process can include sketch development, 3D modelling, printing, hand painting and packaging.</span></p><p><span data-ru="">Если вам нужен уникальный объект, расскажите нам свою идею. Мы разработаем ее поэтапно и будем согласовывать ключевые решения на каждом шаге, чтобы итоговый результат максимально точно соответствовал задуманному образу.</span><span data-en="">If you need a unique object, tell us your idea. We develop it step by step and coordinate the key decisions with you so the final result stays as close as possible to the original vision.</span></p></div></section><section class="grit-process"><div class="grit-section-head"><h3><span data-ru="">КАК МЫ РАБОТАЕМ</span><span data-en="">PROCESS</span></h3></div><ol class="grit-steps"><li><span class="grit-step-num">01</span><span class="grit-step-label"><span data-ru="">ИДЕЯ</span><span data-en="">IDEA</span></span></li><li><span class="grit-step-num">02</span><span class="grit-step-label"><span data-ru="">ЭСКИЗ</span><span data-en="">SKETCH</span></span></li><li><span class="grit-step-num">03</span><span class="grit-step-label"><span data-ru="">МОДЕЛЬ</span><span data-en="">MODEL</span></span></li><li><span class="grit-step-num">04</span><span class="grit-step-label"><span data-ru="">ПЕЧАТЬ</span><span data-en="">PRINT</span></span></li><li><span class="grit-step-num">05</span><span class="grit-step-label"><span data-ru="">ПОКРАСКА</span><span data-en="">PAINT</span></span></li><li><span class="grit-step-num">06</span><span class="grit-step-label"><span data-ru="">УПАКОВКА — опционально</span><span data-en="">PACKAGING — optional</span></span></li></ol><p class="grit-process-note"><span data-ru="">На каждом этапе мы согласовываем с вами все решения, чтобы конечный результат получился таким же, как в ваших мечтах.</span><span data-en="">Every decision is coordinated with you at each stage so the final result can be as close as possible to what you imagined.</span></p></section><section class="grit-work-section grit-work-section--pax" id="grit-pax-anima"><header class="grit-work-head"><h3><span data-ru="">PAX ANIMA</span><span data-en="">PAX ANIMA</span></h3><p><span data-ru="">PAX ANIMA — серия авторских фигурок о духах, странниках и существах пограничного мира. Каждая работа проходит путь от 3D-модели до печати и ручной покраски.</span><span data-en="">PAX ANIMA is a series of original figures about spirits, wanderers and creatures from a liminal world. Each piece moves from a 3D model to print and hand painting.</span></p></header><div class="grit-gallery" data-grit-gallery=""><div class="grit-gallery-rail"><button aria-label="PAX ANIMA — работа 01" class="grit-card grit-pax-card" data-index="0" data-pax-card="" type="button"><span class="grit-card-media grit-pax-media"><img alt="PAX ANIMA — обложка работы 01" class="grit-pax-img grit-pax-img--cover" loading="lazy" src="assets/5318b6724c5ca65d53dc.webp"/><img alt="PAX ANIMA — работа 01" class="grit-pax-img grit-pax-img--detail" loading="lazy" src="assets/86f61e4dd7cae9f65d06.webp"/></span><span class="grit-card-meta"><span class="mono">01</span><span><span data-ru="">PAX ANIMA</span><span data-en="">PAX ANIMA</span></span></span></button><button aria-label="PAX ANIMA — работа 02" class="grit-card grit-pax-card" data-index="1" data-pax-card="" type="button"><span class="grit-card-media grit-pax-media"><img alt="PAX ANIMA — обложка работы 02" class="grit-pax-img grit-pax-img--cover" loading="lazy" src="assets/362beecbb7ece0f3d763.webp"/><img alt="PAX ANIMA — работа 02" class="grit-pax-img grit-pax-img--detail" loading="lazy" src="assets/681d9aa1501c39e82d98.webp"/></span><span class="grit-card-meta"><span class="mono">02</span><span><span data-ru="">PAX ANIMA</span><span data-en="">PAX ANIMA</span></span></span></button><button aria-label="PAX ANIMA — работа 03" class="grit-card grit-pax-card" data-index="2" data-pax-card="" type="button"><span class="grit-card-media grit-pax-media"><img alt="PAX ANIMA — обложка работы 03" class="grit-pax-img grit-pax-img--cover" loading="lazy" src="assets/2274c9d2c278005fa4e2.webp"/><img alt="PAX ANIMA — работа 03" class="grit-pax-img grit-pax-img--detail" loading="lazy" src="assets/2f77c9390d26ec5d2973.webp"/></span><span class="grit-card-meta"><span class="mono">03</span><span><span data-ru="">PAX ANIMA</span><span data-en="">PAX ANIMA</span></span></span></button><button aria-label="PAX ANIMA — работа 04" class="grit-card grit-pax-card" data-index="3" data-pax-card="" type="button"><span class="grit-card-media grit-pax-media"><img alt="PAX ANIMA — обложка работы 04" class="grit-pax-img grit-pax-img--cover" loading="lazy" src="assets/a799e3119459a28a5fea.webp"/><img alt="PAX ANIMA — работа 04" class="grit-pax-img grit-pax-img--detail" loading="lazy" src="assets/eeef7c9fd1d11079f475.webp"/></span><span class="grit-card-meta"><span class="mono">04</span><span><span data-ru="">PAX ANIMA</span><span data-en="">PAX ANIMA</span></span></span></button></div></div><div class="grit-gallery-hint mono"><span data-ru="">НАВЕДИТЕ НА ФОТО / НАЖМИТЕ, ЧТОБЫ УВЕЛИЧИТЬ</span><span data-en="">HOVER / CLICK TO ENLARGE</span></div></section><section class="grit-work-section grit-work-section--process" id="grit-pax-process"><header class="grit-work-head"><h3><span data-ru="">ЭСКИЗЫ / СЫРЫЕ МОДЕЛИ</span><span data-en="">SKETCHES / RAW MODELS</span></h3><p><span data-ru="">Промежуточные материалы коллекции PAX ANIMA.</span><span data-en="">Work-in-progress material from the PAX ANIMA collection.</span></p></header><div class="grit-gallery" data-grit-gallery=""><div class="grit-gallery-rail"><button aria-label="ЭСКИЗЫ / СЫРЫЕ МОДЕЛИ: Эскиз" class="grit-card" data-grit-card="" type="button"><span class="grit-card-media"><span class="grit-placeholder-line grit-placeholder-line--a"></span><span class="grit-placeholder-line grit-placeholder-line--b"></span><span class="grit-placeholder-tag mono">01</span></span><span class="grit-card-meta"><span class="mono">01</span><span><span data-ru="">Эскиз</span><span data-en="">Sketch</span></span></span></button><button aria-label="ЭСКИЗЫ / СЫРЫЕ МОДЕЛИ: Черновая модель" class="grit-card" data-grit-card="" type="button"><span class="grit-card-media"><span class="grit-placeholder-line grit-placeholder-line--a"></span><span class="grit-placeholder-line grit-placeholder-line--b"></span><span class="grit-placeholder-tag mono">02</span></span><span class="grit-card-meta"><span class="mono">02</span><span><span data-ru="">Черновая модель</span><span data-en="">Raw model</span></span></span></button><button aria-label="ЭСКИЗЫ / СЫРЫЕ МОДЕЛИ: Тест формы" class="grit-card" data-grit-card="" type="button"><span class="grit-card-media"><span class="grit-placeholder-line grit-placeholder-line--a"></span><span class="grit-placeholder-line grit-placeholder-line--b"></span><span class="grit-placeholder-tag mono">03</span></span><span class="grit-card-meta"><span class="mono">03</span><span><span data-ru="">Тест формы</span><span data-en="">Shape test</span></span></span></button><button aria-label="ЭСКИЗЫ / СЫРЫЕ МОДЕЛИ: Тест печати" class="grit-card" data-grit-card="" type="button"><span class="grit-card-media"><span class="grit-placeholder-line grit-placeholder-line--a"></span><span class="grit-placeholder-line grit-placeholder-line--b"></span><span class="grit-placeholder-tag mono">04</span></span><span class="grit-card-meta"><span class="mono">04</span><span><span data-ru="">Тест печати</span><span data-en="">Print test</span></span></span></button></div></div><div class="grit-gallery-hint mono"><span data-ru="">ТЯНИТЕ ГАЛЕРЕЮ / НАЖМИТЕ НА КАРТОЧКУ</span><span data-en="">DRAG THE GALLERY / CLICK A CARD</span></div></section><section class="grit-work-section grit-work-section--stress" id="grit-stress"><header class="grit-work-head"><h3><span data-ru="">СТРЕССОВИЧКИ</span><span data-en="">STRESSOVICHKI</span></h3><p><span data-ru="">Готовая фигурка и концепты серии.</span><span data-en="">Finished figure and concepts for the series.</span></p></header><div class="grit-gallery" data-grit-gallery=""><div class="grit-gallery-rail"><button aria-label="СТРЕССОВИЧКИ: Готовая фигурка" class="grit-card" data-grit-card="" type="button"><span class="grit-card-media"><span class="grit-placeholder-line grit-placeholder-line--a"></span><span class="grit-placeholder-line grit-placeholder-line--b"></span><span class="grit-placeholder-tag mono">01</span></span><span class="grit-card-meta"><span class="mono">01</span><span><span data-ru="">Готовая фигурка</span><span data-en="">Finished figure</span></span></span></button><button aria-label="СТРЕССОВИЧКИ: Концепт 01" class="grit-card" data-grit-card="" type="button"><span class="grit-card-media"><span class="grit-placeholder-line grit-placeholder-line--a"></span><span class="grit-placeholder-line grit-placeholder-line--b"></span><span class="grit-placeholder-tag mono">02</span></span><span class="grit-card-meta"><span class="mono">02</span><span><span data-ru="">Концепт 01</span><span data-en="">Concept 01</span></span></span></button><button aria-label="СТРЕССОВИЧКИ: Концепт 02" class="grit-card" data-grit-card="" type="button"><span class="grit-card-media"><span class="grit-placeholder-line grit-placeholder-line--a"></span><span class="grit-placeholder-line grit-placeholder-line--b"></span><span class="grit-placeholder-tag mono">03</span></span><span class="grit-card-meta"><span class="mono">03</span><span><span data-ru="">Концепт 02</span><span data-en="">Concept 02</span></span></span></button><button aria-label="СТРЕССОВИЧКИ: Концепт 03" class="grit-card" data-grit-card="" type="button"><span class="grit-card-media"><span class="grit-placeholder-line grit-placeholder-line--a"></span><span class="grit-placeholder-line grit-placeholder-line--b"></span><span class="grit-placeholder-tag mono">04</span></span><span class="grit-card-meta"><span class="mono">04</span><span><span data-ru="">Концепт 03</span><span data-en="">Concept 03</span></span></span></button><button aria-label="СТРЕССОВИЧКИ: Концепт 04" class="grit-card" data-grit-card="" type="button"><span class="grit-card-media"><span class="grit-placeholder-line grit-placeholder-line--a"></span><span class="grit-placeholder-line grit-placeholder-line--b"></span><span class="grit-placeholder-tag mono">05</span></span><span class="grit-card-meta"><span class="mono">05</span><span><span data-ru="">Концепт 04</span><span data-en="">Concept 04</span></span></span></button></div></div><div class="grit-gallery-hint mono"><span data-ru="">ТЯНИТЕ ГАЛЕРЕЮ / НАЖМИТЕ НА КАРТОЧКУ</span><span data-en="">DRAG THE GALLERY / CLICK A CARD</span></div></section><section class="grit-work-section grit-work-section--merch" id="grit-merch-concepts"><header class="grit-work-head"><h3><span data-ru="">КОНЦЕПТЫ СУВЕНИРНОЙ ПРОДУКЦИИ</span><span data-en="">MERCH CONCEPTS</span></h3><p><span data-ru="">Идеи индивидуальной сувенирной продукции и объектов под заказ.</span><span data-en="">Ideas for custom merchandise and made-to-order objects.</span></p></header><div class="grit-gallery" data-grit-gallery=""><div class="grit-gallery-rail"><button aria-label="КОНЦЕПТЫ СУВЕНИРНОЙ ПРОДУКЦИИ: Сувенирный концепт 01" class="grit-card" data-grit-card="" type="button"><span class="grit-card-media"><span class="grit-placeholder-line grit-placeholder-line--a"></span><span class="grit-placeholder-line grit-placeholder-line--b"></span><span class="grit-placeholder-tag mono">01</span></span><span class="grit-card-meta"><span class="mono">01</span><span><span data-ru="">Сувенирный концепт 01</span><span data-en="">Merch concept 01</span></span></span></button><button aria-label="КОНЦЕПТЫ СУВЕНИРНОЙ ПРОДУКЦИИ: Сувенирный концепт 02" class="grit-card" data-grit-card="" type="button"><span class="grit-card-media"><span class="grit-placeholder-line grit-placeholder-line--a"></span><span class="grit-placeholder-line grit-placeholder-line--b"></span><span class="grit-placeholder-tag mono">02</span></span><span class="grit-card-meta"><span class="mono">02</span><span><span data-ru="">Сувенирный концепт 02</span><span data-en="">Merch concept 02</span></span></span></button><button aria-label="КОНЦЕПТЫ СУВЕНИРНОЙ ПРОДУКЦИИ: Сувенирный концепт 03" class="grit-card" data-grit-card="" type="button"><span class="grit-card-media"><span class="grit-placeholder-line grit-placeholder-line--a"></span><span class="grit-placeholder-line grit-placeholder-line--b"></span><span class="grit-placeholder-tag mono">03</span></span><span class="grit-card-meta"><span class="mono">03</span><span><span data-ru="">Сувенирный концепт 03</span><span data-en="">Merch concept 03</span></span></span></button><button aria-label="КОНЦЕПТЫ СУВЕНИРНОЙ ПРОДУКЦИИ: Сувенирный концепт 04" class="grit-card" data-grit-card="" type="button"><span class="grit-card-media"><span class="grit-placeholder-line grit-placeholder-line--a"></span><span class="grit-placeholder-line grit-placeholder-line--b"></span><span class="grit-placeholder-tag mono">04</span></span><span class="grit-card-meta"><span class="mono">04</span><span><span data-ru="">Сувенирный концепт 04</span><span data-en="">Merch concept 04</span></span></span></button><button aria-label="КОНЦЕПТЫ СУВЕНИРНОЙ ПРОДУКЦИИ: Сувенирный концепт 05" class="grit-card" data-grit-card="" type="button"><span class="grit-card-media"><span class="grit-placeholder-line grit-placeholder-line--a"></span><span class="grit-placeholder-line grit-placeholder-line--b"></span><span class="grit-placeholder-tag mono">05</span></span><span class="grit-card-meta"><span class="mono">05</span><span><span data-ru="">Сувенирный концепт 05</span><span data-en="">Merch concept 05</span></span></span></button></div></div><div class="grit-gallery-hint mono"><span data-ru="">ТЯНИТЕ ГАЛЕРЕЮ / НАЖМИТЕ НА КАРТОЧКУ</span><span data-en="">DRAG THE GALLERY / CLICK A CARD</span></div></section><div class="grit-bottom-close"><button class="grit-toggle grit-toggle--bottom" data-grit-close="" type="button"><span data-ru="">СВЕРНУТЬ 1000GRIT</span><span data-en="">CLOSE 1000GRIT</span></button></div></div><div aria-label="PAX ANIMA" aria-modal="true" class="pax-modal" hidden="" id="pax-modal" role="dialog"><button aria-label="Закрыть" class="pax-modal-close" type="button">×</button><img alt="PAX ANIMA enlarged" class="pax-modal-image" loading="lazy" decoding="async"/></div></section><footer class="contact" id="contact"><div class="contact-kicker mono"><span data-ru="">Контакты / новый проект</span><span data-en="">Contact / new project</span></div><div class="contact-main"><h2 class="contact-title"><span data-ru="">ЕСТЬ ПРОЕКТ?<br/>ДАВАЙТЕ<br/>ОБСУДИМ <span aria-hidden="true">→</span></span><span data-en="">HAVE A PROJECT?<br/>LET'S<br/>TALK <span aria-hidden="true">→</span></span></h2><div class="contact-links"><a href="https://t.me/PPPPEEESSS" rel="noopener" target="_blank"><span class="contact-link-label mono">Telegram</span><span class="contact-link-value">@PPPPEEESSS</span></a><a href="mailto:paha.03@bk.ru?subject=%D0%9D%D0%BE%D0%B2%D1%8B%D0%B9%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%20%D0%B4%D0%BB%D1%8F%20P%D0%81S"><span class="contact-link-label mono">Email</span><span class="contact-link-value">paha.03@bk.ru</span></a></div></div><div class="foot-note mono">PES / PAVEL</div></footer>
+<script>
+  // Drag-only, seamless horizontal loops for the two product panels in project 02.
+  document.querySelectorAll('[data-loop-gallery]').forEach(function(panel){
+    const viewport = panel.querySelector('.product-panel-viewport');
+    const track = panel.querySelector('.product-panel-track');
+    const originals = Array.from(track.children);
+    const half = originals.length / 2;
+    let offset = 0;
+    let startX = 0;
+    let startOffset = 0;
+    let dragging = false;
+    let raf = 0;
+
+    function cycleWidth(){
+      if (!originals.length) return 0;
+      const first = originals[0].getBoundingClientRect();
+      const second = originals[1] ? originals[1].getBoundingClientRect() : first;
+      return (second.left - first.left) * half;
+    }
+    function render(){
+      track.style.transform = 'translate3d(' + offset + 'px,0,0)';
+    }
+    function normalize(){
+      const w = cycleWidth();
+      if (!w) return;
+      while (offset <= -w) offset += w;
+      while (offset > 0) offset -= w;
+    }
+    function move(x){
+      offset = startOffset + (x - startX);
+      normalize();
+      render();
+    }
+    function pointerDown(e){
+      dragging = true;
+      startX = e.clientX;
+      startOffset = offset;
+      viewport.classList.add('is-dragging');
+      viewport.setPointerCapture?.(e.pointerId);
+      e.preventDefault();
+    }
+    function pointerMove(e){
+      if (!dragging) return;
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(function(){ move(e.clientX); });
+    }
+    function pointerUp(e){
+      if (!dragging) return;
+      dragging = false;
+      viewport.classList.remove('is-dragging');
+      viewport.releasePointerCapture?.(e.pointerId);
+    }
+    viewport.addEventListener('pointerdown', pointerDown);
+    viewport.addEventListener('pointermove', pointerMove);
+    viewport.addEventListener('pointerup', pointerUp);
+    viewport.addEventListener('pointercancel', pointerUp);
+    viewport.addEventListener('dragstart', function(e){ e.preventDefault(); });
+    window.addEventListener('resize', function(){ normalize(); render(); });
+    normalize();
+    render();
+  });
+
+
+  const btnRu = document.getElementById('btn-ru');
+  const btnEn = document.getElementById('btn-en');
+  btnEn.addEventListener('click', ()=>{
+    document.documentElement.classList.add('en');
+    btnEn.classList.add('active'); btnRu.classList.remove('active');
+  });
+  btnRu.addEventListener('click', ()=>{
+    document.documentElement.classList.remove('en');
+    btnRu.classList.add('active'); btnEn.classList.remove('active');
+  });
+
+  // product-style galleries: click a thumbnail to swap the main image
+  document.querySelectorAll('.product-gallery').forEach(function(pg){
+    var mainImg = pg.querySelector('.main-img');
+    var capRu = pg.querySelector('.main-caption [data-ru]');
+    var capEn = pg.querySelector('.main-caption [data-en]');
+    pg.querySelectorAll('.thumb').forEach(function(thumb){
+      thumb.addEventListener('click', function(){
+        pg.querySelectorAll('.thumb').forEach(function(t){ t.classList.remove('active'); });
+        thumb.classList.add('active');
+        var currentIndex = Array.from(pg.querySelectorAll('.thumb')).indexOf(thumb) + 1;
+        var galleryCurrent = pg.querySelector('.gallery-current');
+        if(galleryCurrent) galleryCurrent.textContent = String(currentIndex).padStart(2, '0');
+        mainImg.src = thumb.getAttribute('data-full');
+        mainImg.alt = thumb.querySelector('img').alt;
+        if(capRu) capRu.textContent = thumb.getAttribute('data-cap-ru');
+        if(capEn) capEn.textContent = thumb.getAttribute('data-cap-en');
+      });
+    });
+  });
+
+
+  // Mark the visible project in the desktop chapter index.
+  const railLinks = Array.from(document.querySelectorAll('.chapter-rail a'));
+  if ('IntersectionObserver' in window && railLinks.length) {
+    const chapterObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        railLinks.forEach((link) => link.classList.toggle('active', link.dataset.section === entry.target.id));
+      });
+    }, { rootMargin: '-42% 0px -48% 0px', threshold: 0 });
+    document.querySelectorAll('section.chapter').forEach((section) => chapterObserver.observe(section));
+  }
+</script>
+<script>
+
+  // Touch/click fallbacks for the two hover crossfades in the print project.
+  document.querySelectorAll('[data-print-showcase]').forEach(function(showcase){
+    const mockup = showcase.querySelector('.print-mockup-stage');
+    const spreads = showcase.querySelector('.print-spreads-stage');
+    if (mockup) mockup.addEventListener('click', function(){ mockup.classList.toggle('is-alt'); });
+    if (spreads) spreads.addEventListener('click', function(){ spreads.classList.toggle('is-process'); });
+  });
+
+  // Seamless right-to-left poster carousel with position-based scaling, hover pause and drag support.
+  document.querySelectorAll('[data-poster-carousel]').forEach(function(carousel){
+    const viewport = carousel.querySelector('.poster-viewport');
+    const track = carousel.querySelector('.poster-track');
+    if (!viewport || !track) return;
+
+    const originals = Array.from(track.children);
+    if (!originals.length) return;
+    originals.forEach(function(item){
+      const clone = item.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      track.appendChild(clone);
+    });
+
+    let offset = 0;
+    let cycle = 0;
+    let dragging = false;
+    let hovered = false;
+    let startX = 0;
+    let startOffset = 0;
+    let lastTime = performance.now();
+    let resumeAt = lastTime;
+    const speed = 25; // pixels per second: intentionally slow.
+    const minScale = 2 / 3;
+
+    function measure(){
+      const items = track.children;
+      if (items.length <= originals.length) return;
+      const first = items[0].getBoundingClientRect();
+      const duplicate = items[originals.length].getBoundingClientRect();
+      cycle = duplicate.left - first.left;
+      normalize();
+    }
+
+    function normalize(){
+      if (!cycle) return;
+      while (offset <= -cycle) offset += cycle;
+      while (offset > 0) offset -= cycle;
+    }
+
+    function render(){
+      track.style.transform = 'translate3d(' + offset + 'px,0,0)';
+      const vr = viewport.getBoundingClientRect();
+      const center = vr.left + vr.width / 2;
+      const half = Math.max(1, vr.width / 2);
+      Array.from(track.children).forEach(function(item){
+        const inner = item.querySelector('.poster-card-inner');
+        if (!inner) return;
+        const rect = item.getBoundingClientRect();
+        const itemCenter = rect.left + rect.width / 2;
+        const distance = Math.min(1, Math.abs(itemCenter - center) / half);
+        const scale = 1 - (1 - minScale) * distance;
+        inner.style.transform = 'scale(' + scale.toFixed(4) + ')';
+        inner.style.opacity = String((0.70 + 0.30 * (1 - distance)).toFixed(3));
+        item.style.zIndex = String(Math.round(scale * 100));
+      });
+    }
+
+    function frame(now){
+      const dt = Math.min(48, now - lastTime) / 1000;
+      lastTime = now;
+      if (!dragging && !hovered && now >= resumeAt){
+        offset -= speed * dt;
+        normalize();
+      }
+      render();
+      requestAnimationFrame(frame);
+    }
+
+    viewport.addEventListener('pointerenter', function(){
+      hovered = true;
+    });
+    viewport.addEventListener('pointerleave', function(){
+      hovered = false;
+      resumeAt = performance.now() + 2000;
+    });
+    viewport.addEventListener('pointerdown', function(e){
+      dragging = true;
+      startX = e.clientX;
+      startOffset = offset;
+      viewport.classList.add('is-dragging');
+      viewport.setPointerCapture?.(e.pointerId);
+      e.preventDefault();
+    });
+    viewport.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      offset = startOffset + (e.clientX - startX);
+      normalize();
+      render();
+    });
+    function endDrag(e){
+      if (!dragging) return;
+      dragging = false;
+      viewport.classList.remove('is-dragging');
+      viewport.releasePointerCapture?.(e.pointerId);
+      if (!hovered) resumeAt = performance.now() + 2000;
+    }
+    viewport.addEventListener('pointerup', endDrag);
+    viewport.addEventListener('pointercancel', endDrag);
+    viewport.addEventListener('dragstart', function(e){ e.preventDefault(); });
+    window.addEventListener('resize', function(){ measure(); render(); });
+
+    requestAnimationFrame(function(){
+      measure();
+      render();
+      requestAnimationFrame(frame);
+    });
+  });
+</script><script id="final-revision-script">
+(function(){
+  // Decode both infographic galleries before revealing them, preventing lazy-load jumps while dragging.
+  document.querySelectorAll('#ch2 .product-panel').forEach(function(panel){
+    const images = Array.from(panel.querySelectorAll('.product-media-card img'));
+    if (!images.length) { panel.classList.add('is-media-ready'); return; }
+    let remaining = images.length;
+    let finished = false;
+    function mark(img){
+      if (!img.classList.contains('is-decoded')) {
+        img.classList.add('is-decoded');
+        remaining -= 1;
+      }
+      if (remaining <= 0 && !finished) {
+        finished = true;
+        requestAnimationFrame(function(){ panel.classList.add('is-media-ready'); });
+      }
+    }
+    images.forEach(function(img){
+      img.loading = 'eager';
+      img.decoding = 'async';
+      if (img.complete && img.naturalWidth) {
+        if (img.decode) img.decode().catch(function(){}).finally(function(){ mark(img); });
+        else mark(img);
+      } else {
+        img.addEventListener('load', function(){
+          if (img.decode) img.decode().catch(function(){}).finally(function(){ mark(img); });
+          else mark(img);
+        }, {once:true});
+        img.addEventListener('error', function(){ mark(img); }, {once:true});
+      }
+    });
+    // Safe visual fallback even if a browser does not resolve decode() promptly.
+    window.setTimeout(function(){
+      images.forEach(function(img){ img.classList.add('is-decoded'); });
+      panel.classList.add('is-media-ready');
+      finished = true;
+    }, 3200);
+  });
+})();
+</script><script id="recomposition-revision-script">
+(function(){
+  document.querySelectorAll('[data-branding-showcase]').forEach(function(showcase){
+    const stageImages=Array.from(showcase.querySelectorAll('.branding-stage-image'));
+    const tiles=Array.from(showcase.querySelectorAll('.branding-tile'));
+    if(stageImages.length<2 || !tiles.length) return;
+    let activeImage=0;
+    let activeTile=0;
+    let switching=false;
+
+    function activate(index){
+      if(index===activeTile || switching) return;
+      const tile=tiles[index];
+      const nextImage=1-activeImage;
+      const incoming=stageImages[nextImage];
+      switching=true;
+      incoming.src=tile.dataset.brandingSrc;
+      incoming.alt=tile.dataset.brandingAlt || '';
+      const reveal=function(){
+        stageImages[activeImage].classList.remove('is-active');
+        incoming.classList.add('is-active');
+        tiles.forEach(function(t,i){t.classList.toggle('is-active',i===index);});
+        activeImage=nextImage;
+        activeTile=index;
+        window.setTimeout(function(){switching=false;},280);
+      };
+      if(incoming.decode){
+        incoming.decode().catch(function(){}).finally(function(){requestAnimationFrame(reveal);});
+      }else if(incoming.complete){
+        requestAnimationFrame(reveal);
+      }else{
+        incoming.addEventListener('load',function(){requestAnimationFrame(reveal);},{once:true});
+      }
+    }
+
+    tiles.forEach(function(tile,index){
+      tile.addEventListener('pointerenter',function(){activate(index);});
+      tile.addEventListener('focus',function(){activate(index);});
+      tile.addEventListener('click',function(){activate(index);});
+    });
+  });
+})();
+</script><script id="grit-1000-script">(function(){
+ const section=document.getElementById('ch6'); if(!section)return;
+ const content=document.getElementById('grit-content'); const topToggle=section.querySelector('.grit-intro .grit-toggle'); const bottomClose=section.querySelector('[data-grit-close]');
+ function setOpen(open){ if(!content||!topToggle)return; topToggle.setAttribute('aria-expanded',String(open)); content.hidden=!open; if(open){requestAnimationFrame(()=>content.querySelector('.grit-about')?.scrollIntoView({behavior:'smooth',block:'start'}));} else {section.scrollIntoView({behavior:'smooth',block:'start'});} }
+ topToggle?.addEventListener('click',()=>setOpen(topToggle.getAttribute('aria-expanded')!=='true')); bottomClose?.addEventListener('click',()=>setOpen(false));
+ const video=section.querySelector('[data-grit-video]'); const playlist=["assets/7b9a10103142287831da.mp4", "assets/ecd3b31c75b593d3192c.mp4", "assets/b7b203d64a3c1cd7e4b6.mp4"]; let vi=0;
+ function playIndex(i){if(!video||!playlist.length)return;vi=(i+playlist.length)%playlist.length;video.src=playlist[vi];video.load();const p=video.play();if(p?.catch)p.catch(()=>{});}
+ if(video){video.muted=true;video.loop=false;video.addEventListener('ended',()=>playIndex(vi+1));video.addEventListener('error',()=>setTimeout(()=>playIndex(vi+1),300));const p=video.play();if(p?.catch)p.catch(()=>{});}
+ section.querySelectorAll('[data-grit-gallery]').forEach(viewport=>{const rail=viewport.querySelector('.grit-gallery-rail');if(!rail)return;let x=0,sx=0,so=0,drag=false;const bound=()=>Math.min(0,viewport.clientWidth-rail.scrollWidth);const clamp=v=>Math.max(bound(),Math.min(0,v));const render=()=>rail.style.transform=`translate3d(${x}px,0,0)`;viewport.addEventListener('pointerdown',e=>{if(e.button!==undefined&&e.button!==0)return;drag=true;viewport.classList.add('is-dragging');sx=e.clientX;so=x;viewport.setPointerCapture?.(e.pointerId)});viewport.addEventListener('pointermove',e=>{if(!drag)return;x=clamp(so+(e.clientX-sx));render()});const end=e=>{if(!drag)return;drag=false;viewport.classList.remove('is-dragging');viewport.releasePointerCapture?.(e.pointerId)};viewport.addEventListener('pointerup',end);viewport.addEventListener('pointercancel',end);window.addEventListener('resize',()=>{x=clamp(x);render()});});
+ const detailImgs=["assets/86f61e4dd7cae9f65d06.webp", "assets/681d9aa1501c39e82d98.webp", "assets/2f77c9390d26ec5d2973.webp", "assets/eeef7c9fd1d11079f475.webp"]; const modal=document.getElementById('pax-modal'); const modalImg=modal?.querySelector('.pax-modal-image');
+ section.querySelectorAll('[data-pax-card]').forEach(card=>card.addEventListener('click',()=>{const i=Number(card.dataset.index||0);if(modal&&modalImg){modalImg.src=detailImgs[i];modal.hidden=false;document.body.style.overflow='hidden';}}));
+ function closeModal(){if(modal)modal.hidden=true;document.body.style.overflow='';} modal?.querySelector('.pax-modal-close')?.addEventListener('click',closeModal);modal?.addEventListener('click',e=>{if(e.target===modal)closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+})();</script><script src="portfolio-redesign.js"></script></body>
+</html>
