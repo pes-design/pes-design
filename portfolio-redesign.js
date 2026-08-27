@@ -98,7 +98,7 @@
 
     const disciplines = document.createElement('p');
     disciplines.className = 'hero-disciplines-inline';
-    disciplines.innerHTML = '<span data-ru>Работаю с айдентикой, инфографикой, 3D-моделированием, полиграфией, иллюстрацией, плакатами и визуальными экспериментами.</span><span data-en>I work across identity, infographics, 3D modelling, print, illustration, posters, and visual experimentation.</span>';
+    disciplines.innerHTML = '<span data-ru><strong>Рабочие инструменты.</strong> Adobe Photoshop, Illustrator, InDesign и CorelDRAW — для графики, айдентики и полиграфии; Figma — для интерфейсов и визуальных систем; Nomad Sculpt и Womp 3D — для объёмной формы и 3D; Procreate — для иллюстрации и эскизов. Использую ChatGPT и Claude как ИИ-инструменты для исследования, разработки концепций и ускорения рабочих процессов.</span><span data-en><strong>Tools.</strong> Adobe Photoshop, Illustrator, InDesign, and CorelDRAW for graphics, identity, and print; Figma for interfaces and visual systems; Nomad Sculpt and Womp 3D for sculpting and 3D form; Procreate for illustration and sketching. I use ChatGPT and Claude as AI tools for research, concept development, and workflow acceleration.</span>';
     aboutText.append(disciplines);
 
     const profile = document.createElement('div');
@@ -126,6 +126,27 @@
     aboutSection.append(aboutLabel, profileGrid);
     gritSection.after(aboutSection);
   }
+
+  const posterTitles = [
+    ['Плакат «Lost Boy»', '“Lost Boy” poster'],
+    ['Визуальный эксперимент в эстетике 2000-х', 'Visual experiment in a 2000s aesthetic'],
+    ['Плакат «Дизайн» — исполни детскую мечту', '“Design” poster — fulfil your childhood dream'],
+    ['Новогодний плакат для «Союзник»', 'New Year poster for Soyuznik'],
+    ['Обложка музыкального журнала «GARM»', 'GARM music magazine cover'],
+    ['Плакат «Выбери профессию будущего»', '“Choose the profession of the future” poster'],
+    ['Плакат «The Last Chance»', '“The Last Chance” poster'],
+    ['Типографический плакат с немецким текстом', 'Typographic poster with German copy']
+  ];
+  document.querySelectorAll('#ch5 .poster-item').forEach((item, index) => {
+    const title = posterTitles[index];
+    if (!title) return;
+    const ru = item.querySelector('.poster-caption [data-ru]');
+    const en = item.querySelector('.poster-caption [data-en]');
+    const image = item.querySelector('img');
+    if (ru) ru.textContent = title[0];
+    if (en) en.textContent = title[1];
+    if (image) image.alt = title[0];
+  });
 
   const projectIds = ['ch5','ch1','ch2','ch3','ch4','ch6'];
   const projectSections = projectIds.map(id => document.getElementById(id)).filter(Boolean);
@@ -159,12 +180,22 @@
     projectsGate.after(projectsShell);
     projectSections.forEach(section => projectsShell.append(section));
 
+    let projectsCloseTimer = 0;
     projectsToggle.addEventListener('click', () => {
       const open = projectsToggle.getAttribute('aria-expanded') !== 'true';
       projectsToggle.setAttribute('aria-expanded', String(open));
-      projectsShell.hidden = !open;
+      window.clearTimeout(projectsCloseTimer);
       document.body.classList.toggle('projects-open', open);
-      if (open) requestAnimationFrame(() => projectSections[0].scrollIntoView({behavior:'smooth', block:'start'}));
+      if (open) {
+        projectsShell.hidden = false;
+        requestAnimationFrame(() => {
+          projectsShell.classList.add('is-open');
+          window.setTimeout(() => projectSections[0].scrollIntoView({behavior:'smooth', block:'start'}), 150);
+        });
+      } else {
+        projectsShell.classList.remove('is-open');
+        projectsCloseTimer = window.setTimeout(() => { projectsShell.hidden = true; }, 300);
+      }
     });
 
     document.querySelectorAll('.site-nav a[href="#ch5"]').forEach(link => link.setAttribute('href', '#projects'));
@@ -518,6 +549,228 @@
     paintIntro();
   }
 
+  const enhancedGritSection = document.querySelector('#ch6');
+  if (enhancedGritSection) {
+    const gritContent = enhancedGritSection.querySelector('#grit-content');
+    const gritLogo = enhancedGritSection.querySelector('.grit-logo-switch');
+    const legacyTopToggle = enhancedGritSection.querySelector('.grit-intro > .grit-toggle');
+    let closeTimer = 0;
+
+    if (gritContent && gritLogo) {
+      legacyTopToggle?.remove();
+      gritLogo.setAttribute('role', 'button');
+      gritLogo.setAttribute('tabindex', '0');
+      gritLogo.setAttribute('aria-controls', 'grit-content');
+      gritLogo.setAttribute('aria-expanded', String(!gritContent.hidden));
+      gritLogo.setAttribute('aria-label', 'Открыть или свернуть раздел 1000GRIT');
+
+      const setGritOpen = (open, scrollAfterClose = false) => {
+        window.clearTimeout(closeTimer);
+        gritLogo.classList.toggle('is-open', open);
+        gritLogo.setAttribute('aria-expanded', String(open));
+        enhancedGritSection.classList.toggle('is-grit-open', open);
+        gritContent.classList.remove('grit-content--entering', 'grit-content--leaving');
+
+        if (open) {
+          gritContent.hidden = false;
+          requestAnimationFrame(() => gritContent.classList.add('grit-content--entering'));
+          closeTimer = window.setTimeout(() => gritContent.classList.remove('grit-content--entering'), 380);
+          return;
+        }
+
+        if (gritContent.hidden) return;
+        gritContent.classList.add('grit-content--leaving');
+        closeTimer = window.setTimeout(() => {
+          gritContent.hidden = true;
+          gritContent.classList.remove('grit-content--leaving');
+          if (scrollAfterClose) gritLogo.scrollIntoView({behavior:reduceMotion ? 'auto' : 'smooth', block:'center'});
+        }, reduceMotion ? 0 : 230);
+      };
+
+      const toggleFromLogo = () => setGritOpen(gritContent.hidden);
+      gritLogo.addEventListener('click', toggleFromLogo);
+      gritLogo.addEventListener('keydown', event => {
+        if (event.key !== 'Enter' && event.key !== ' ') return;
+        event.preventDefault();
+        toggleFromLogo();
+      });
+
+      const legacyBottomClose = enhancedGritSection.querySelector('[data-grit-close]');
+      if (legacyBottomClose) {
+        const bottomClose = legacyBottomClose.cloneNode(false);
+        bottomClose.className = legacyBottomClose.className;
+        bottomClose.type = 'button';
+        bottomClose.dataset.gritClose = '';
+        bottomClose.setAttribute('aria-label', 'Свернуть раздел 1000GRIT');
+        const label = document.createElement('span');
+        const labelRu = document.createElement('span');
+        const labelEn = document.createElement('span');
+        labelRu.dataset.ru = '';
+        labelEn.dataset.en = '';
+        labelRu.textContent = 'СВЕРНУТЬ РАЗДЕЛ / 1000GRIT';
+        labelEn.textContent = 'CLOSE SECTION / 1000GRIT';
+        label.append(labelRu, labelEn);
+        const mark = document.createElement('span');
+        mark.className = 'grit-close-mark';
+        mark.setAttribute('aria-hidden', 'true');
+        mark.textContent = '↑';
+        bottomClose.append(label, mark);
+        legacyBottomClose.replaceWith(bottomClose);
+        bottomClose.addEventListener('click', () => setGritOpen(false, true));
+      }
+    }
+
+    const processAssets = [
+      ['idea', 'grit-assets/step-idea.webp', 'Текстовая разработка идеи'],
+      ['sketch', 'grit-assets/step-sketch.webp', 'Эскиз персонажей'],
+      ['model', 'grit-assets/step-model.webp', 'Разработка модели рядом с эскизом'],
+      ['print', 'grit-assets/step-print.webp', 'Две тестовые 3D-печати'],
+      ['paint', 'grit-assets/step-paint.webp', 'Покрашенная фигурка'],
+      ['packaging', 'grit-assets/step-packaging.webp', 'Фигурка в готовой упаковке']
+    ];
+    const processSteps = enhancedGritSection.querySelectorAll('.grit-process .grit-steps > li');
+    processSteps.forEach((step, index) => {
+      const config = processAssets[index];
+      if (!config) return;
+      const [name, source, alt] = config;
+      step.classList.add('grit-step-photo', `grit-step-photo--${name}`);
+      step.tabIndex = 0;
+      const image = document.createElement('img');
+      image.className = 'grit-step-image';
+      image.src = source;
+      image.alt = alt;
+      image.loading = 'lazy';
+      image.decoding = 'async';
+      image.draggable = false;
+      step.prepend(image);
+
+      step.addEventListener('click', () => {
+        if (window.matchMedia('(hover:hover)').matches) return;
+        const nextState = !step.classList.contains('is-preview');
+        processSteps.forEach(item => item.classList.remove('is-preview'));
+        step.classList.toggle('is-preview', nextState);
+      });
+      step.addEventListener('keydown', event => {
+        if (event.key !== 'Enter' && event.key !== ' ') return;
+        event.preventDefault();
+        step.classList.toggle('is-preview');
+      });
+    });
+
+    const processGallerySection = enhancedGritSection.querySelector('#grit-pax-process');
+    const processRail = processGallerySection?.querySelector('.grit-gallery-rail');
+    if (processGallerySection && processRail) {
+      const captions = [
+        {ru:'Эскиз', en:'Sketch'},
+        {ru:'Черновая модель', en:'Raw model'},
+        {ru:'Тест печати', en:'Print test'}
+      ];
+      const firstSetImages = [
+        {source:'grit-assets/set01-sketch.webp', className:'grit-set-image--sketch', alt:'Эскиз персонажа с посохом'},
+        {source:'grit-assets/set01-raw.webp', className:'grit-set-image--raw', alt:'Черновая 3D-модель персонажа'},
+        {source:'grit-assets/set01-print.webp', className:'grit-set-image--print', alt:'Тест печати фигурки'}
+      ];
+
+      const addBilingualText = (parent, ru, en) => {
+        const ruText = document.createElement('span');
+        const enText = document.createElement('span');
+        ruText.dataset.ru = '';
+        enText.dataset.en = '';
+        ruText.textContent = ru;
+        enText.textContent = en;
+        parent.append(ruText, enText);
+      };
+
+      const createSetCard = (setNumber, index) => {
+        const caption = captions[index];
+        const card = document.createElement('button');
+        card.type = 'button';
+        card.className = 'grit-card grit-set-card';
+        card.dataset.gritCard = '';
+        card.setAttribute('aria-label', `Сет ${setNumber}: ${caption.ru}`);
+
+        const media = document.createElement('span');
+        media.className = 'grit-card-media';
+        if (setNumber === 1) {
+          const imageData = firstSetImages[index];
+          const image = document.createElement('img');
+          image.className = `grit-set-image ${imageData.className}`;
+          image.src = imageData.source;
+          image.alt = imageData.alt;
+          image.loading = 'lazy';
+          image.decoding = 'async';
+          image.draggable = false;
+          media.append(image);
+        } else {
+          const placeholder = document.createElement('span');
+          placeholder.className = 'grit-set-placeholder';
+          addBilingualText(placeholder, `СЕТ ${String(setNumber).padStart(2,'0')} · МАТЕРИАЛ БУДЕТ ДОБАВЛЕН`, `SET ${String(setNumber).padStart(2,'0')} · MATERIAL COMING SOON`);
+          media.append(placeholder);
+        }
+
+        const meta = document.createElement('span');
+        meta.className = 'grit-card-meta';
+        const number = document.createElement('span');
+        number.className = 'mono';
+        number.textContent = String(index + 1).padStart(2, '0');
+        const title = document.createElement('span');
+        addBilingualText(title, caption.ru, caption.en);
+        meta.append(number, title);
+        card.append(media, meta);
+        return card;
+      };
+
+      const renderSet = setNumber => {
+        processRail.replaceChildren(...captions.map((_, index) => createSetCard(setNumber, index)));
+        processGallerySection.querySelector('.grit-gallery')?.scrollTo({left:0, behavior:reduceMotion ? 'auto' : 'smooth'});
+      };
+
+      const switcher = document.createElement('div');
+      switcher.className = 'grit-set-switcher';
+      switcher.setAttribute('role', 'group');
+      switcher.setAttribute('aria-label', 'Наборы материалов процесса');
+      for (let setNumber = 1; setNumber <= 5; setNumber += 1) {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'grit-set-button';
+        button.textContent = String(setNumber).padStart(2, '0');
+        button.setAttribute('aria-label', `Показать набор ${setNumber}`);
+        button.setAttribute('aria-pressed', String(setNumber === 1));
+        button.classList.toggle('is-active', setNumber === 1);
+        button.addEventListener('click', () => {
+          switcher.querySelectorAll('.grit-set-button').forEach((item, buttonIndex) => {
+            const active = buttonIndex + 1 === setNumber;
+            item.classList.toggle('is-active', active);
+            item.setAttribute('aria-pressed', String(active));
+          });
+          renderSet(setNumber);
+        });
+        switcher.append(button);
+      }
+      renderSet(1);
+      processGallerySection.append(switcher);
+    }
+
+    const paxGallerySection = enhancedGritSection.querySelector('#grit-pax-anima');
+    if (paxGallerySection) {
+      paxGallerySection.querySelectorAll('[data-pax-card]').forEach(oldCard => {
+        const stableCard = document.createElement('div');
+        stableCard.className = oldCard.className;
+        stableCard.tabIndex = 0;
+        stableCard.setAttribute('aria-label', oldCard.getAttribute('aria-label') || 'PAX ANIMA');
+        [...oldCard.children].forEach(child => stableCard.append(child.cloneNode(true)));
+        oldCard.replaceWith(stableCard);
+      });
+
+      const hintRu = paxGallerySection.querySelector('.grit-gallery-hint [data-ru]');
+      const hintEn = paxGallerySection.querySelector('.grit-gallery-hint [data-en]');
+      if (hintRu) hintRu.textContent = 'НАВЕДИТЕ НА ФОТО, ЧТОБЫ УВИДЕТЬ АЛЬТЕРНАТИВНЫЙ КАДР';
+      if (hintEn) hintEn.textContent = 'HOVER TO SEE THE ALTERNATE VIEW';
+    }
+
+    enhancedGritSection.querySelector('#pax-modal')?.remove();
+  }
+
   const revealTargets = [
     ...document.querySelectorAll('.hero-profile-grid, section.chapter:not(#ch6), #ch6 .grit-about, #ch6 .grit-process, #ch6 .grit-work-section')
   ];
@@ -541,59 +794,8 @@
   }
 
   const precisePointer = window.matchMedia('(pointer:fine)').matches;
-  if (!reduceMotion && precisePointer) {
-    let targetY = window.scrollY;
-    let currentY = window.scrollY;
-    let frame = 0;
-    let previousTime = performance.now();
-
-    const animateScroll = time => {
-      if (document.body.classList.contains('portal-committing')) {
-        frame = 0;
-        return;
-      }
-      const elapsed = Math.min(32, time - previousTime);
-      previousTime = time;
-      const response = 1 - Math.exp(-elapsed / 100);
-      currentY += (targetY - currentY) * response;
-
-      if (Math.abs(targetY - currentY) < .5) {
-        currentY = targetY;
-        window.scrollTo(0, currentY);
-        frame = 0;
-        return;
-      }
-
-      window.scrollTo(0, currentY);
-      frame = requestAnimationFrame(animateScroll);
-    };
-
-    window.addEventListener('wheel', event => {
-      if (event.ctrlKey || event.metaKey) return;
-      if (document.body.classList.contains('portal-committing')) {
-        event.preventDefault();
-        return;
-      }
-      const horizontalGallery = event.target.closest('.thumbs, [data-loop-gallery], .grit-gallery');
-      if (horizontalGallery && (event.shiftKey || Math.abs(event.deltaX) > Math.abs(event.deltaY))) return;
-
-      event.preventDefault();
-      const maxY = document.documentElement.scrollHeight - window.innerHeight;
-      targetY = Math.max(0, Math.min(maxY, targetY + event.deltaY));
-      currentY = window.scrollY;
-      if (!frame) {
-        previousTime = performance.now();
-        frame = requestAnimationFrame(animateScroll);
-      }
-    }, {passive:false});
-
-    window.addEventListener('scroll', () => {
-      if (!frame) {
-        targetY = window.scrollY;
-        currentY = window.scrollY;
-      }
-    }, {passive:true});
-  }
+  // Keep native wheel and trackpad scrolling intact. This preserves macOS
+  // momentum and avoids multiplying small high-frequency trackpad deltas.
 
   document.querySelectorAll('#ch6 [data-grit-gallery]').forEach(viewport => {
     const rail = viewport.querySelector('.grit-gallery-rail');
